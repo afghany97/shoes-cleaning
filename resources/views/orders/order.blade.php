@@ -1,34 +1,50 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+
+@section('content')
 
     <div class="container">
 
-        <table>
+        <div class="panel panel-default">
 
-            <tr>
+            <div class="panel panel-heading">
 
-                <th>Customer name</th>
+                <h1>Order information</h1>
 
-                <th>Customer mobile</th>
+                <div class="panel-body">
 
-                <th>shoes type</th>
+                    <ul class="list-group">
 
-                <th>image</th>
+                        <li class="list-group-item">
 
-            </tr>
+                            <strong>Customer name : </strong> {{$order->user->name}}
 
-            <tr>
+                        </li>
 
-                <td>{{$order->user->name}}</td>
+                        <li class="list-group-item">
 
-                <td>{{$order->user->mobile}}</td>
+                            <strong>Customer mobile : </strong> {{$order->user->mobile}}
 
-                <td>{{\App\shoes::find($order->shoes_id)->type}}</td>
+                        </li>
 
-                <td><img src="/storage/{{$order->image_path}}" alt="image" class="small-image"></td>
+                        <li class="list-group-item">
 
-            </tr>
+                            <strong>Shoes type: </strong> {{\App\shoes::find($order->shoes_id)->type}}
 
-        </table>
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <strong>Order image: </strong> <img src="/storage/{{$order->image_path}}" alt="image"
+                                                                class="small-image">
+
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
