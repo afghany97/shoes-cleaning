@@ -18,7 +18,7 @@
 
             <div class="form-group">
 
-                <label for="customer_mobile">Customer name</label>
+                <label for="customer_mobile">Customer mobile</label>
 
                 <input name = "customer_mobile" type="number" class="form-control" id="customer_mobile" placeholder="your mobile number" value="{{old('customer_mobile')}}"required >
 

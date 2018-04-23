@@ -48,11 +48,11 @@ class OrdersController extends Controller
     {
         $this->validate(request(),[
 
-            'name' => 'required',
+            'customer_name' => 'required',
 
-            'mobile' => 'required',
+            'customer_mobile' => 'required',
 
-            'image_path' => 'required|image'
+            'image' => 'required|image'
 
         ]);
 
@@ -81,7 +81,7 @@ class OrdersController extends Controller
      */
     public function show(order $order)
     {
-        //
+        return view('orders.report',compact('order'));
     }
 
     /**
