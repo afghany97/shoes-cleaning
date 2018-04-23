@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body onload=display_ct();>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
