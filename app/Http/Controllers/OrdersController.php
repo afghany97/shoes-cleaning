@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\customer;
 use App\order;
 use App\shoes;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
+    /**
+     * OrdersController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +46,21 @@ class OrdersController extends Controller
      */
     public function store()
     {
+        customer::create([
+           'name' => request('customer_name'),
 
+            'mobile' => request('customer_mobile')
+
+        ]);
+
+        order::create([
+           'customer_id' => auth()->id(),
+
+            'image_path' => request()->file('image')->store('images','public'),
+
+        ]);
+
+        return redirect(route('home'));
     }
 
     /**

@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="/orders" method="POST" enctype="multipart/form-data">
 
             {{csrf_field()}}
 
