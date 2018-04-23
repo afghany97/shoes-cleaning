@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/orders/create' , 'OrdersController@create');
 
 Route::post('/orders' , 'OrdersController@store');
+
+Route::get('/orders/{order}' , 'OrdersController@show');

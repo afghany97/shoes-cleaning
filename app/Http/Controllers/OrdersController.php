@@ -81,7 +81,7 @@ class OrdersController extends Controller
      */
     public function show(order $order)
     {
-        return view('orders.report',compact('order'));
+        return view('orders.order',compact('order'));
     }
 
     /**
