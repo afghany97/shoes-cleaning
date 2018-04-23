@@ -18,9 +18,9 @@
 
             <tr>
 
-                <td>{{$order->customer->name}}</td>
+                <td>{{$order->user->name}}</td>
 
-                <td>{{$order->customer->mobile}}</td>
+                <td>{{$order->user->mobile}}</td>
 
                 <td>{{\App\shoes::find($order->shoes_id)->type}}</td>
 
