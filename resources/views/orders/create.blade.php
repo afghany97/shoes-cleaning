@@ -32,6 +32,12 @@
 
             </div>
 
+            <div class="form-group">
+
+                <img class="small-image" id="blah" src="#" alt="your image"/>
+
+            </div>
+
 
             <div class="form-group">
 
