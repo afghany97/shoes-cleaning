@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\customer;
+use App\Http\Requests\OrdersFormRequest;
 use App\order;
 use App\shoes;
 use Illuminate\Http\Request;
@@ -44,17 +45,8 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(OrdersFormRequest $formRequest)
     {
-        $this->validate(request(),[
-
-            'name' => 'required|exists:users,name',
-
-            'mobile' => 'required|exists:users,mobile',
-
-            'image' => 'required|image'
-
-        ]);
 
         order::create([
            'user_id' => auth()->id(),
