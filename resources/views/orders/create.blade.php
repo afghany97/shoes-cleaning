@@ -10,17 +10,17 @@
 
             <div class="form-group">
 
-                <label for="customer_name">Customer name</label>
+                <label for="name">name</label>
 
-                <input name = "customer_name" type="text" class="form-control" id="customer_name" placeholder="your name" value="{{old('customer_name')}}" required>
+                <input name = "name" type="text" class="form-control" id="name" placeholder="your name" value="{{old('name')}}" required>
 
             </div>
 
             <div class="form-group">
 
-                <label for="customer_mobile">Customer mobile</label>
+                <label for="mobile">mobile</label>
 
-                <input name = "customer_mobile" type="number" class="form-control" id="customer_mobile" placeholder="your mobile number" value="{{old('customer_mobile')}}"required >
+                <input name = "mobile" type="number" class="form-control" id="mobile" placeholder="your mobile number" value="{{old('mobile')}}"required >
 
             </div>
 
