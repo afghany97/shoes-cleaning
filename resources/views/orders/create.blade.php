@@ -20,7 +20,7 @@
 
                 <label for="customer_mobile">Customer name</label>
 
-                <input name = "customer_mobile" type="number" class="form-control" id="customer_mobile" placeholder="your mobile number" value="{{old('customer_mobile')}}" required>
+                <input name = "customer_mobile" type="number" class="form-control" id="customer_mobile" placeholder="your mobile number" value="{{old('customer_mobile')}}"required >
 
             </div>
 
@@ -28,7 +28,7 @@
 
                 <label for="image">Image</label>
 
-                <input name ="image" type="file" class="form-control" id="image" value="{{old('image')}}" accept="image/*" required>
+                <input name ="image" type="file" class="form-control" id="image" value="{{old('image')}}" accept="image/*" required >
 
             </div>
 
@@ -61,6 +61,9 @@
 
         </form>
 
+        @include('layouts.errors')
+
     </div>
+
 
 @endsection
