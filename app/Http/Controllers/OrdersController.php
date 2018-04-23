@@ -46,6 +46,16 @@ class OrdersController extends Controller
      */
     public function store()
     {
+        $this->validate(request(),[
+
+            'name' => 'required',
+
+            'mobile' => 'required',
+
+            'image_path' => 'required|image'
+
+        ]);
+
         customer::create([
            'name' => request('customer_name'),
 
