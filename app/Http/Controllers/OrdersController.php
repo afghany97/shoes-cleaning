@@ -48,15 +48,9 @@ class OrdersController extends Controller
     public function store(OrdersFormRequest $formRequest)
     {
 
-        order::create([
-           'user_id' => auth()->id(),
+        $order = order::addOrder();
 
-            'image_path' => request()->file('image')->store('images','public'),
-
-            'shoes_id' => request('shoes_id')
-        ]);
-
-        return redirect(route('home'));
+        return redirect($order->path());
     }
 
     /**

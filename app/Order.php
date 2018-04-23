@@ -30,4 +30,21 @@ class Order extends Model
     {
         $this->attributes['token'] = $this->created_at->year . str_pad((string)$this->id,4,'0',STR_PAD_LEFT);
     }
+
+    public static function addOrder()
+    {
+        return self::create([
+            'user_id' => auth()->id(),
+
+            'image_path' => request()->file('image')->store('images','public'),
+
+            'shoes_id' => request('shoes_id')
+
+        ]);
+    }
+
+    public function path()
+    {
+        return "/orders/" . $this->id;
+    }
 }
