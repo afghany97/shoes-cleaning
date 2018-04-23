@@ -16,6 +16,11 @@
 
                         <li class="list-group-item">
 
+                            <strong>Order barcode: </strong> {{$order->token}}
+
+                        </li>
+                        <li class="list-group-item">
+
                             <strong>Customer name : </strong> {{$order->user->name}}
 
                         </li>
