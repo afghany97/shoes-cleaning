@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class customer extends Model
 {
-    //
+    protected  $guarded = [];
+
+    public function orders()
+    {
+        return $this->hasMany(order::class);
+    }
 }
