@@ -39,11 +39,11 @@
 
                     <option value="">Select shoes type</option>
 
-                    {{--@foreach($channels as $channel)--}}
+                    @foreach($shoess as $shoes)
 
-                        {{--<option value="{{$channel->id}}" {{$channel->id == old('channel_id') ? 'selected' : ""}}>{{$channel->name}}</option>--}}
+                        <option value="{{$shoes->id}}" {{$shoes->id == old('shoes_id') ? 'selected' : ""}}>{{$shoes->type}}</option>
 
-                    {{--@endforeach--}}
+                    @endforeach
 
                 </select>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\order;
+use App\shoes;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -24,18 +25,19 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $shoess = shoes::all();
+
+        return view('orders.create' , compact('shoess'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+
     }
 
     /**
