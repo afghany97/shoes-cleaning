@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\order;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
 
     /**
