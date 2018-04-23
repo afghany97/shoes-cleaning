@@ -8,9 +8,9 @@ class Order extends Model
 {
     protected  $guarded =[];
 
-    public function customer()
+    public function user()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
     public function shoes()
