@@ -48,23 +48,16 @@ class OrdersController extends Controller
     {
         $this->validate(request(),[
 
-            'customer_name' => 'required',
+            'name' => 'required|exists:users,name',
 
-            'customer_mobile' => 'required',
+            'mobile' => 'required|exists:users,mobile',
 
             'image' => 'required|image'
 
         ]);
 
-        customer::create([
-           'name' => request('customer_name'),
-
-            'mobile' => request('customer_mobile')
-
-        ]);
-
         order::create([
-           'customer_id' => auth()->id(),
+           'user_id' => auth()->id(),
 
             'image_path' => request()->file('image')->store('images','public'),
 
