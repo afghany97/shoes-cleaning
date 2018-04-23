@@ -68,6 +68,7 @@ class OrdersController extends Controller
 
             'image_path' => request()->file('image')->store('images','public'),
 
+            'shoes_id' => request('shoes_id')
         ]);
 
         return redirect(route('home'));

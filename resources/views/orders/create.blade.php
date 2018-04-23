@@ -41,7 +41,7 @@
 
             <div class="form-group">
 
-                <select name="shoes" class="form-control" required>
+                <select name="shoes_id" class="form-control" required>
 
                     <option value="">Select shoes type</option>
 

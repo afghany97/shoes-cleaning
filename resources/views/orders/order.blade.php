@@ -22,7 +22,7 @@
 
                 <td>{{$order->customer->mobile}}</td>
 
-                <td>null</td>
+                <td>{{\App\shoes::find($order->shoes_id)->type}}</td>
 
                 <td><img src="/storage/{{$order->image_path}}" alt="image" class="small-image"></td>
 
