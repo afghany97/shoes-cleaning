@@ -33,7 +33,7 @@
 
                         <li class="list-group-item">
 
-                            <strong>Shoes type: </strong> {{\App\shoes::find($order->shoes_id)->type}}
+                            <strong>Shoes type: </strong> {{$order->shoes->type}}
 
                         </li>
 

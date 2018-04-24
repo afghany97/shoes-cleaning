@@ -23,7 +23,7 @@ class Order extends Model
 
     public function shoes()
     {
-        return $this->hasOne(shoes::class);
+        return $this->belongsTo(shoes::class);
     }
 
     public function setTokenAttribute($value)
