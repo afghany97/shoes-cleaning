@@ -62,3 +62,11 @@ function display_ct() {
     document.getElementById('ct').innerHTML = x;
     tt=display_c();
 }
+
+function cancel() {
+    if(confirm('are you sure ?')) {
+        return window.location.replace('/home');
+    } else {
+        return false;
+    }
+}

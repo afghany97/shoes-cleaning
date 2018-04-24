@@ -64,7 +64,7 @@
 
                     <button type="submit" class="btn btn-primary">Save</button>
 
-                    <button class="btn btn-default">cancel</button>
+                    <button class="btn btn-default" onclick="cancel()">cancel</button>
 
                 </form>
 
