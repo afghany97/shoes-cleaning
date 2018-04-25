@@ -43,6 +43,19 @@
                                                                 class="small-image">
 
                         </li>
+
+                        <li class="list-group-item">
+
+                            <strong>Order date: </strong> {{$order->created_at->format('Y-m-d')}}
+
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <strong>Order time: </strong> {{$order->created_at->format('h:i:s A')}}
+
+                        </li>
+
                     </ul>
 
                 </div>
