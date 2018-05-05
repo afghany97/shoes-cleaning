@@ -41,13 +41,6 @@
 
                     <div class="form-group">
 
-                        <img class="small-image" id="blah" src="#" alt="your image"/>
-
-                    </div>
-
-
-                    <div class="form-group">
-
                         <select name="shoes_id" class="form-control" required>
 
                             <option value="">Select shoes type</option>
@@ -75,6 +68,14 @@
             <div class="col-md-4">
 
                 <span id='ct' ></span>
+
+                <hr>
+
+                <div class="form-group">
+
+                    <img class="small-image" id="blah" src="#" alt="your image"/>
+
+                </div>
 
             </div>
 
