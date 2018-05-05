@@ -80,7 +80,10 @@
 
                         <label for="delivery_date">delivery date</label>
 
-                        <input name="delivery_date" type="date" class="form-control" id="delivery_date" placeholder="delivery date" value="{{old('delivery_date') ? old('delivery_date') : \Carbon\Carbon::now()->addDay(2)->toDateString()}}" required>
+                        <input name="delivery_date" type="date" class="form-control" id="delivery_date"
+                               placeholder="delivery date"
+                               value="{{old('delivery_date') ? old('delivery_date') : \Carbon\Carbon::now()->addDay(2)->toDateString()}}"
+                               required>
 
                     </div>
 
@@ -96,7 +99,21 @@
 
             <div class="col-md-4">
 
-                <span id='ct' ></span>
+                <div class="panel panel-default">
+
+                    <div class="panel panel-heading">
+
+                        <strong>Date & Time</strong>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <span id='ct'></span>
+
+                    </div>
+
+                </div>
 
                 <hr>
 
@@ -111,6 +128,5 @@
         </div>
 
     </div>
-
 
 @endsection

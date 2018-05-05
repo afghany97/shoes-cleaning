@@ -59,7 +59,8 @@ function display_c(){
 function display_ct() {
     var strcount
     var x = new Date()
-    document.getElementById('ct').innerHTML = x;
+    time = x.toTimeString().split(' ')[0];
+    document.getElementById('ct').innerHTML = x.getDate() + "-" + (x.getMonth() + 1) + "-" + x.getFullYear() + "   " + time;
     tt=display_c();
 }
 
