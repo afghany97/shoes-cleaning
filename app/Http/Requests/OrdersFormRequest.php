@@ -28,7 +28,9 @@ class OrdersFormRequest extends FormRequest
 
             'mobile' => 'required|mobile|numeric',
 
-            'image' => 'required|image'
+            'image' => 'required|image',
+
+            'address' => 'required'
         ];
     }
 }

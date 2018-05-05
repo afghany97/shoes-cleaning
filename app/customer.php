@@ -21,7 +21,7 @@ class customer extends Model
 
             'mobile' => request('mobile'),
 
-            'address' => 'ay habd'
+            'address' => request('address')
         ];
     }
 

@@ -14,6 +14,15 @@
 
                     <div class="form-group">
 
+                        <label for="mobile">mobile</label>
+
+                        <input name="mobile" type="number" class="form-control" id="mobile"
+                               placeholder="your mobile number" value="{{old('mobile')}}" required>
+
+                    </div>
+
+                    <div class="form-group">
+
                         <label for="name">name</label>
 
                         <input name="name" type="text" class="form-control" id="name" placeholder="your name"
@@ -23,10 +32,10 @@
 
                     <div class="form-group">
 
-                        <label for="mobile">mobile</label>
+                        <label for="address">address</label>
 
-                        <input name="mobile" type="number" class="form-control" id="mobile"
-                               placeholder="your mobile number" value="{{old('mobile')}}" required>
+                        <input name="address" type="text" class="form-control" id="address" placeholder="your address"
+                               value="{{old('address')}}" required>
 
                     </div>
 
