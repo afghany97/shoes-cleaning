@@ -21,13 +21,13 @@
                         </li>
                         <li class="list-group-item">
 
-                            <strong>Customer name : </strong> {{$order->user->name}}
+                            <strong>Customer name : </strong> {{$order->customer->name}}
 
                         </li>
 
                         <li class="list-group-item">
 
-                            <strong>Customer mobile : </strong> {{$order->user->mobile}}
+                            <strong>Customer mobile : </strong> {{$order->customer->mobile}}
 
                         </li>
 
