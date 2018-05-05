@@ -29,7 +29,10 @@ class customer extends Model
     {
         if(! request()->wantsJson())
 
-            return customer::where('mobile', request('mobile'))->firstOrCreate(static::Data());
+            return static::where('mobile' , request('mobile'))->firstOr(function(){
+
+                return self::create(static::Data());
+            });
 
     }
 }
