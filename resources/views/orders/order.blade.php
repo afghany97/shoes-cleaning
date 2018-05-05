@@ -63,6 +63,12 @@
 
                         </li>
 
+                        <li class="list-group-item">
+
+                            <strong>delivery date :</strong> {{\Carbon\Carbon::parse($order->delivery_date)->format('Y-m-d')}}
+
+                        </li>
+
                     </ul>
 
                 </div>
