@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class ShoesController extends Controller
 {
     /**
+     * ShoesController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index','show');
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -33,9 +42,20 @@ class ShoesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $this->validate(request(),[
+
+            'shoes_type' => 'required|string'
+        ]);
+
+        shoes::create([
+
+            'type' => request('shoes_type')
+
+        ]);
+
+        return back();
     }
 
     /**
