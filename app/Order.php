@@ -16,9 +16,9 @@ class Order extends Model
             $model->update(['token' => $model]);
         });
     }
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(customer::class);
     }
 
     public function shoes()
@@ -31,10 +31,11 @@ class Order extends Model
         $this->attributes['token'] = $this->created_at->year . str_pad((string)$this->id,4,'0',STR_PAD_LEFT);
     }
 
-    public static function addOrder()
+    public static function addOrder($customer)
     {
         return self::create([
-            'user_id' => auth()->id(),
+
+            'customer_id' => $customer->id,
 
             'image_path' => request()->file('image')->store('images','public'),
 

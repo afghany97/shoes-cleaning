@@ -47,8 +47,9 @@ class OrdersController extends Controller
      */
     public function store(OrdersFormRequest $formRequest)
     {
+        $customer = customer::fetch();
 
-        $order = order::addOrder();
+        $order = order::addOrder($customer);
 
         return redirect($order->path());
     }
