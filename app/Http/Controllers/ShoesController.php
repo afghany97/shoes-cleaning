@@ -24,7 +24,7 @@ class ShoesController extends Controller
      */
     public function create()
     {
-        //
+        return view('shoes.create');
     }
 
     /**
