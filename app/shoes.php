@@ -12,4 +12,13 @@ class shoes extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public static function addShoes()
+    {
+        self::create([
+
+            'type' => request('shoes_type')
+
+        ]);
+    }
 }

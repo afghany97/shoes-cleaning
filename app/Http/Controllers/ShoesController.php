@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\shoesFormRequest;
 use App\shoes;
 use Illuminate\Http\Request;
 
@@ -39,21 +40,12 @@ class ShoesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param shoesFormRequest $formRequest
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(shoesFormRequest $formRequest)
     {
-        $this->validate(request(),[
-
-            'shoes_type' => 'required|string'
-        ]);
-
-        shoes::create([
-
-            'type' => request('shoes_type')
-
-        ]);
+        shoes::addShoes();
 
         return back();
     }
