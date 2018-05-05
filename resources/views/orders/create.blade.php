@@ -41,6 +41,15 @@
 
                     <div class="form-group">
 
+                        <label for="price">price</label>
+
+                        <input name="price" type="number" class="form-control" id="price" placeholder="price"
+                               value="{{old('price')}}" required>
+
+                    </div>
+
+                    <div class="form-group">
+
                         <label for="image">Image</label>
 
                         <input name="image" type="file" class="form-control" id="image" value="{{old('image')}}"

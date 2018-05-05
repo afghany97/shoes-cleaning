@@ -30,7 +30,10 @@ class OrdersFormRequest extends FormRequest
 
             'image' => 'required|image',
 
-            'address' => 'required'
+            'address' => 'required',
+
+            'price' => 'required|numeric'
+
         ];
     }
 }

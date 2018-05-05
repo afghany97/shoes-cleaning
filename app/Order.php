@@ -39,7 +39,9 @@ class Order extends Model
 
             'image_path' => request()->file('image')->store('images','public'),
 
-            'shoes_id' => request('shoes_id')
+            'shoes_id' => request('shoes_id'),
+
+            'price' => request('price')
 
         ]);
     }
