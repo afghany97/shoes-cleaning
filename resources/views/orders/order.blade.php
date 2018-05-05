@@ -19,6 +19,7 @@
                             <strong>Order barcode: </strong> {{$order->token}}
 
                         </li>
+
                         <li class="list-group-item">
 
                             <strong>Customer name : </strong> {{$order->customer->name}}
@@ -34,6 +35,12 @@
                         <li class="list-group-item">
 
                             <strong>Shoes type: </strong> {{$order->shoes->type}}
+
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <strong>price: </strong> {{$order->price}}
 
                         </li>
 
