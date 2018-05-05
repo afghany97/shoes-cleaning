@@ -41,6 +41,8 @@
 
                             <li><a href="\orders\create">New Order</a></li>
 
+                            <li><a href="\shoes\create">New shoes</a></li>
+
                         @endif
 
                     </ul>
