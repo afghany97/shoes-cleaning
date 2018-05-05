@@ -25,6 +25,14 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        if(request()->has('from') || request()->has('to'))
+        {
+            $orders = Order::where('created_at' , '>=' , request('from'))
+                ->where('created_at' , '<=' , request('to'))->get();
+
+            return view('orders.byDate',compact('orders'));
+
+        }
         $orders = Order::all();
 
         return view('orders.index',compact('orders'));
