@@ -34,6 +34,12 @@
 
                         <li class="list-group-item">
 
+                            <strong>Customer address : </strong> {{$order->customer->address}}
+
+                        </li>
+
+                        <li class="list-group-item">
+
                             <strong>Shoes type: </strong> {{$order->shoes->type}}
 
                         </li>
