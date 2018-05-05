@@ -73,6 +73,14 @@
 
                     </div>
 
+                    <div class="form-group">
+
+                        <label for="delivery_date">delivery date</label>
+
+                        <input name="delivery_date" type="date" class="form-control" id="delivery_date" placeholder="delivery date" value="{{old('delivery_date') ? old('delivery_date') : \Carbon\Carbon::now()->addDay(2)->toDateString()}}" required>
+
+                    </div>
+
                     <button type="submit" class="btn btn-primary">Save</button>
 
                     <button class="btn btn-default" onclick="cancel()">cancel</button>

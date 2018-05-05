@@ -41,7 +41,9 @@ class Order extends Model
 
             'shoes_id' => request('shoes_id'),
 
-            'price' => request('price')
+            'price' => request('price'),
+
+            'delivery_date' => request('delivery_date')
 
         ]);
     }

@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('price');
             $table->string('image_path')->nullable();
             $table->string('token',50)->nullable();
+            $table->timestamp('delivery_date');
             $table->timestamps();
         });
     }

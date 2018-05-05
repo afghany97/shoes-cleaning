@@ -32,7 +32,9 @@ class OrdersFormRequest extends FormRequest
 
             'address' => 'required',
 
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+
+            'delivery_date' => 'required'
 
         ];
     }
