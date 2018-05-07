@@ -24,7 +24,7 @@ class shoesFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'shoes_type' => 'required|string'
+            'shoes_type' => 'required|string|unique:shoes,type'
         ];
     }
 }

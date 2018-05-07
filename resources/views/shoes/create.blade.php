@@ -16,7 +16,8 @@
 
                         <label for="shoes_type">Shoes type</label>
 
-                        <input name="shoes_type" type="text" class="form-control" id="shoes_type" placeholder="shoes type..."
+                        <input name="shoes_type" type="text" class="form-control" id="shoes_type"
+                               placeholder="shoes type..."
                                value="{{old('shoes_type')}}" required>
 
                     </div>
@@ -24,5 +25,7 @@
                     <button type="submit" class="btn btn-primary">save</button>
 
                 </form>
+
+    @include('layouts.errors')
 
 @endsection
