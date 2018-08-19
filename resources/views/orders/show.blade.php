@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+
+    Order {{$order->id}}
+
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -16,7 +22,7 @@
 
                         <li class="list-group-item">
 
-                            <strong>Order barcode: </strong> {{$order->token}}
+                            <strong>Order barcode: </strong> {{$order->barcode}}
 
                         </li>
 
@@ -52,7 +58,7 @@
 
                         <li class="list-group-item">
 
-                            <strong>Order image: </strong> <img src="/storage/{{$order->image_path}}" alt="image"
+                            <strong>Order image: </strong> <img src="{{$order->imagePath()}}" alt="image"
                                                                 class="small-image">
 
                         </li>

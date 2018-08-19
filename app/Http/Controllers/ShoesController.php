@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\shoesFormRequest;
-use App\shoes;
+use App\Shoes;
 use Illuminate\Http\Request;
 
 class ShoesController extends Controller

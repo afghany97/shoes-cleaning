@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\customer;
+use App\Customer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
@@ -42,7 +42,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $mobile
      * @return \Illuminate\Http\Response
      */
     public function show($mobile)

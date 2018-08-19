@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+
+    Create Shoes
+
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -8,7 +14,7 @@
 
             <div class="col-md-8">
 
-                <form action="/shoes" method="POST">
+                <form action="{{route('shoes.store')}}" method="POST">
 
                     {{csrf_field()}}
 

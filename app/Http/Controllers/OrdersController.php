@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\customer;
+use App\Customer;
+use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
-use App\order;
-use App\shoes;
+use App\Order;
+use App\Shoes;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -21,19 +22,14 @@ class OrdersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param OrdersFilter $filters
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OrdersFilter $filters)
     {
-        if(request()->has('from') || request()->has('to'))
-        {
-            $orders = Order::where('created_at' , '>=' , request('from'))
-                ->where('created_at' , '<=' , request('to'))->get();
+        $orders = Order::latest()->Filter($filters);
 
-            return view('orders.byDate',compact('orders'));
-
-        }
-        $orders = Order::all();
+        $orders = $orders->paginate(10);
 
         return view('orders.index',compact('orders'));
     }
@@ -45,23 +41,24 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $shoess = shoes::all();
+        $shoes = shoes::all();
 
-        return view('orders.create' , compact('shoess'));
+        return view('orders.create' , compact('shoes'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param OrdersFormRequest $formRequest
      * @return \Illuminate\Http\Response
      */
     public function store(OrdersFormRequest $formRequest)
     {
-        $customer = customer::fetch();
+        $customer = customer::fetchOrCreate();
 
-        $order = order::addOrder($customer);
+        $order = order::createOrder($customer);
 
-        return redirect($order->path());
+        return redirect(route('order.show',$order));
     }
 
     /**
@@ -72,7 +69,7 @@ class OrdersController extends Controller
      */
     public function show(order $order)
     {
-        return view('orders.order',compact('order'));
+        return view('orders.show',compact('order'));
     }
 
     /**

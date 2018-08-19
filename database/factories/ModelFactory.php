@@ -23,8 +23,30 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\shoes::class, function (Faker\Generator $faker) {
+$factory->define(App\Shoes::class, function (Faker\Generator $faker) {
     return [
         'type' => $faker->word
+    ];
+});
+
+$factory->define(App\Order::class, function (Faker\Generator $faker) {
+    return [
+        'customer_id' => function () {
+            return factory('App\Customer')->create()->id;
+        },
+        'shoes_id' => function(){
+            return factory('App\Shoes')->create()->id;
+        },
+        'price' => $faker->numberBetween(1, 100),
+        'image_path' => $faker->imageUrl(),
+        'delivery_date' => $faker->date()
+    ];
+});
+
+$factory->define(App\Customer::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'address' => $faker->address,
+        'mobile' => $faker->phoneNumber
     ];
 });

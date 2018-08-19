@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class customer extends Model
+class Customer extends Model
 {
     protected $guarded = [];
 
@@ -25,7 +25,7 @@ class customer extends Model
         ];
     }
 
-    public static function fetch()
+    public static function fetchOrCreate()
     {
         if(! request()->wantsJson())
 

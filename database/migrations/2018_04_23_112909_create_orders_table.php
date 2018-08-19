@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('shoes_id')->index();
             $table->unsignedInteger('price');
             $table->string('image_path')->nullable();
-            $table->string('token',50)->nullable();
+            $table->string('barcode',50)->nullable();
             $table->timestamp('delivery_date');
             $table->timestamps();
         });

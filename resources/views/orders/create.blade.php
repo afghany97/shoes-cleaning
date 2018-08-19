@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+
+    Create Order
+
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -66,9 +72,9 @@
 
                             <option value="">Select shoes type</option>
 
-                            @foreach($shoess as $shoes)
+                            @foreach($shoes as $shoe)
 
-                                <option value="{{$shoes->id}}" {{$shoes->id == old('shoes_id') ? 'selected' : ""}}>{{$shoes->type}}</option>
+                                <option value="{{$shoe->id}}" {{$shoe->id == old('shoes_id') ? 'selected' : ""}}>{{$shoe->type}}</option>
 
                             @endforeach
 
@@ -117,9 +123,19 @@
 
                 <hr>
 
-                <div class="form-group">
+                <div class="panel panel-default">
 
-                    <img class="small-image" id="blah" src="#" alt="your image"/>
+                    <div class="panel panel-heading">
+
+                        <strong>Selected Image</strong>
+
+                    </div>
+
+                    <div class="panel-body">
+
+                        <img class="small-image" id="blah" src="#" alt="your image" style="display: none"/>
+
+                    </div>
 
                 </div>
 
@@ -128,5 +144,17 @@
         </div>
 
     </div>
+
+@section('js')
+
+    <script src="{{url('js/CustomerFinder.js')}}"></script>
+
+    <script src="{{url('js/DateTime.js')}}"></script>
+
+    <script src="{{url('js/ImageReader.js')}}"></script>
+
+    <script src="{{url('js/CancelButton.js')}}"></script>
+
+@endsection
 
 @endsection

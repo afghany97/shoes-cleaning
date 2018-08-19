@@ -13,25 +13,26 @@ class Order extends Model
         parent::boot();
 
         static::created(function ($model){
-            $model->update(['token' => $model]);
+            $model->update(['barcode' => $model]);
         });
     }
+
     public function customer()
     {
-        return $this->belongsTo(customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function shoes()
     {
-        return $this->belongsTo(shoes::class);
+        return $this->belongsTo(Shoes::class);
     }
 
-    public function setTokenAttribute($value)
+    public function setBarcodeAttribute($value)
     {
-        $this->attributes['token'] = $this->created_at->year . str_pad((string)$this->id,4,'0',STR_PAD_LEFT);
+        $this->attributes['barcode'] = $this->created_at->year . str_pad((string)$this->id,4,'0',STR_PAD_LEFT);
     }
 
-    public static function addOrder($customer)
+    public static function createOrder($customer)
     {
         return self::create([
 
@@ -48,8 +49,13 @@ class Order extends Model
         ]);
     }
 
-    public function path()
+    public function scopeFilter($query,$filters)
     {
-        return "/orders/" . $this->id;
+        return $filters->apply($query);
+    }
+
+    public function imagePath()
+    {
+        return "/storage/" . $this->image_path;
     }
 }
