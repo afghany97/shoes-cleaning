@@ -58,7 +58,11 @@ class OrdersController extends Controller
 
         $order = order::createOrder($customer);
 
-        return redirect(route('order.show',$order));
+        return ($customer && $order) ?
+
+            redirect(route('order.show',$order))->withSuccess('Order created successfully') :
+
+            back()->withErrors('Create Order Fails');
     }
 
     /**

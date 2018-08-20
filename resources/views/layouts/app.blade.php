@@ -111,7 +111,7 @@
                                aria-haspopup="true"
 
 
-                               aria-expanded="false">Dropdown <span class="caret"></span></a>
+                               aria-expanded="false">{{auth()->user()->name}} <span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
 
@@ -150,6 +150,26 @@
         </div><!-- /.container-fluid -->
 
     </nav>
+
+    @if($errors->any())
+
+        <div class="alert alert-danger text-center w-50 mx-auto m-b-10">
+
+            {{$errors->first()}}
+
+        </div>
+
+    @endif
+
+    @if(session('success'))
+
+        <div class="alert alert-success text-center w-50 mx-auto m-b-10">
+
+            {{session('success')}}
+
+        </div>
+
+    @endif
 
     @yield('content')
 

@@ -27,7 +27,7 @@ class Order extends Model
         return $this->belongsTo(Shoes::class);
     }
 
-    public function setBarcodeAttribute($value)
+    public function setBarcodeAttribute()
     {
         $this->attributes['barcode'] = $this->created_at->year . str_pad((string)$this->id,4,'0',STR_PAD_LEFT);
     }
