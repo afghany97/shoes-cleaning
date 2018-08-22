@@ -47,3 +47,17 @@ Route::get('/suppliers/{supplier}/edit','SuppliersController@edit')->name('suppl
 Route::post('/suppliers/{supplier}/update','SuppliersController@update')->name('supplier.update');
 
 Route::delete('/suppliers/{supplier}/delete','SuppliersController@destroy')->name('supplier.destroy');
+
+// products routes
+
+Route::get('/products/create','ProductsController@create')->name('product.create');
+
+Route::get('/products','ProductsController@index')->name('products');
+
+Route::post('/products','ProductsController@store')->name('product.store');
+
+Route::get('/products/{product}/edit','ProductsController@edit')->name('product.edit');
+
+Route::post('/products/{product}/update','ProductsController@update')->name('product.update');
+
+Route::delete('/products/{product}/delete','ProductsController@destroy')->name('product.destroy');
