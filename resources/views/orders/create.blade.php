@@ -14,7 +14,7 @@
 
             <div class="col-md-8">
 
-                <form action="/orders" method="POST" enctype="multipart/form-data">
+                <form action="{{route('order.store')}}" method="POST" enctype="multipart/form-data">
 
                     {{csrf_field()}}
 
