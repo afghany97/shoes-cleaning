@@ -110,3 +110,26 @@ $factory->state(App\Supplier::class, 'testing', [
     'contact_person' => 'contact person testing',
     'contact_information' => 'information about contact to this supplier'
 ]);
+
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+    return [
+        'supplier_id' => function () {
+            return factory('App\Supplier')->create()->id;
+        },
+        'barcode' => $faker->unique()->postcode,
+        'description' => $faker->sentence,
+        'price' => $faker->numberBetween(1, 100),
+        'quantity' => $faker->numberBetween(1, 100)
+    ];
+});
+
+$factory->state(App\Product::class, 'testing', [
+    'supplier_id' => function () {
+        return factory('App\Supplier')->state('testing')->create()->id;
+    },
+    'description' => "product address testing",
+    'barcode' => 'product code testing',
+    'price' => 99,
+    'quantity' => 1
+]);

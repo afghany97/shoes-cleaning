@@ -4,8 +4,6 @@ namespace App;
 
 class Order extends Model
 {
-    protected  $guarded =[];
-
     public static function boot()
     {
         parent::boot();
