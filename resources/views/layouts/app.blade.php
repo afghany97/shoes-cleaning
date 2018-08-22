@@ -91,11 +91,24 @@
 
                         </li>
 
-                        <li><a href="{{route('order.create')}}">New Order</a></li>
+                        <li class="dropdown">
 
-                        <li><a href="{{route('shoes.create')}}">New Shoes</a></li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true"
 
-                        <li><a href="{{route('supplier.create')}}">New Supplier</a></li>
+                               aria-expanded="false">New... <span class="caret"></span></a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a href="{{route('order.create')}}">Order</a></li>
+
+                                <li><a href="{{route('shoes.create')}}">Shoes</a></li>
+
+                                <li><a href="{{route('supplier.create')}}">Supplier</a></li>
+
+                            </ul>
+
+                        </li>
 
                     </ul>
 
