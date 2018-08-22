@@ -58,12 +58,12 @@ $factory->state(App\User::class, 'testing', [
     'remember_token' => str_random(10),
 ]);
 
-$factory->state(App\Order::class, 'testing', function (Faker\Generator $faker){
+$factory->state(App\Order::class, 'testing', function (Faker\Generator $faker) {
     return [
-        'customer_id' => function(){
+        'customer_id' => function () {
             return factory('App\Customer')->state('testing')->create()->id;
         },
-        'shoes_id' => function(){
+        'shoes_id' => function () {
             return factory('App\Shoes')->state('testing')->create()->id;
         },
         'price' => 199,
@@ -76,7 +76,7 @@ $factory->state(App\Shoes::class, 'testing', [
     'type' => "shoes-testing",
 ]);
 
-$factory->state(App\Order::class, 'create-order-testing', function (Faker\Generator $faker){
+$factory->state(App\Order::class, 'create-order-testing', function (Faker\Generator $faker) {
     return [
         'mobile' => 12345678910,
         'address' => 'cairo-testing',
@@ -91,4 +91,22 @@ $factory->state(App\Customer::class, 'testing', [
     'name' => "customer-name-testing",
     'address' => "customer-address-testing",
     'mobile' => 12345678910
+]);
+
+$factory->define(App\Supplier::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'code' => $faker->unique()->postcode,
+        'address' => $faker->address,
+        'contact_person' => $faker->name,
+        'contact_information' => $faker->sentence
+    ];
+});
+
+$factory->state(App\Supplier::class, 'testing', [
+    'name' => "supplier name testing",
+    'address' => "supplier address testing",
+    'code' => 'supplier code testing',
+    'contact_person' => 'contact person testing',
+    'contact_information' => 'information about contact to this supplier'
 ]);

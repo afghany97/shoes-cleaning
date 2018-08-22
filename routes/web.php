@@ -33,3 +33,17 @@ Route::get('/shoes/create', 'ShoesController@create')->name('shoes.create');
 Route::post('/shoes', 'ShoesController@store')->name('shoes.store');
 
 Route::get('/customers/find/{mobile}', 'CustomerController@show')->name('customer.find');
+
+// suppliers routes
+
+Route::get('/suppliers','SuppliersController@index')->name('suppliers');
+
+Route::post('/suppliers','SuppliersController@store')->name('supplier.store');
+
+Route::get('/suppliers/create','SuppliersController@create')->name('supplier.create');
+
+Route::get('/suppliers/{supplier}/edit','SuppliersController@edit')->name('supplier.edit');
+
+Route::post('/suppliers/{supplier}/update','SuppliersController@update')->name('supplier.update');
+
+Route::delete('/suppliers/{supplier}/delete','SuppliersController@destroy')->name('supplier.destroy');

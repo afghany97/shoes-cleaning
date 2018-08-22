@@ -75,7 +75,7 @@
 
                                 <li><a href="{{route('orders')}}">Orders</a></li>
 
-                                <li><a href="#">Another action</a></li>
+                                <li><a href="{{route('suppliers')}}">Suppliers</a></li>
 
                                 <li><a href="#">Something else here</a></li>
 
@@ -94,6 +94,8 @@
                         <li><a href="{{route('order.create')}}">New Order</a></li>
 
                         <li><a href="{{route('shoes.create')}}">New Shoes</a></li>
+
+                        <li><a href="{{route('supplier.create')}}">New Supplier</a></li>
 
                     </ul>
 
