@@ -68,7 +68,9 @@
 
                     <div class="form-group">
 
-                        <select name="shoes_id" class="form-control" required>
+                        <label for="shoes">Shoes Type</label>
+
+                        <select name="shoes_id" id="shoes" class="form-control" required>
 
                             <option selected disabled>Select shoes type</option>
 
