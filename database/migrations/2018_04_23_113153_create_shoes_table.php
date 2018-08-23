@@ -18,6 +18,27 @@ class CreateShoesTable extends Migration
             $table->string('type');
             $table->timestamps();
         });
+
+        Schema::create('order_shoes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('order_id');
+            $table->foreign('order_id')
+
+                ->references('id')
+
+                ->on('orders')
+
+                ->onDelete('cascade');
+            $table->unsignedInteger('shoes_id');
+            $table->foreign('shoes_id')
+
+                ->references('id')
+
+                ->on('shoes')
+
+                ->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -27,6 +48,7 @@ class CreateShoesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('order_shoes');
         Schema::dropIfExists('shoes');
     }
 }

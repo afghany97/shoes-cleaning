@@ -68,4 +68,31 @@ class OrdersTest extends TestCase
             ->assertStatus(200);
     }
 
+    // order information page test case's
+
+    /** @test */
+
+    public function unauthenticated_user_cannot_visit_specific_order_page()
+    {
+        $this->get(route('order.show',$this->order))
+
+            ->assertStatus(302)
+
+            ->assertRedirect(route('login'));
+    }
+
+    /** @test */
+
+    public function authenticated_user_can_visit_specific_order_page()
+    {
+        $this->signIn();
+
+        $this->get(route('order.show',$this->order))
+
+            ->assertStatus(200)
+
+            ->assertSee($this->order->barcode)
+
+            ->assertSee($this->order->customer->mobile);
+    }
 }

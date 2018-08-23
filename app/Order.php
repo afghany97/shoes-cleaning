@@ -20,7 +20,7 @@ class Order extends Model
 
     public function shoes()
     {
-        return $this->belongsTo(Shoes::class);
+        return $this->belongsToMany(Shoes::class,'order_shoes');
     }
 
     public function setBarcodeAttribute()
@@ -35,8 +35,6 @@ class Order extends Model
             'customer_id' => $customer->id,
 
             'image_path' => request()->file('image')->store('images','public'),
-
-            'shoes_id' => request('shoes_id'),
 
             'price' => request('price'),
 
