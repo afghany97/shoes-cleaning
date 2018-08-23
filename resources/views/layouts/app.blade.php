@@ -52,7 +52,7 @@
 
                 </button>
 
-                <a class="navbar-brand" href="#">Shoes <i class="fas fa-broom"></i></a>
+                <a class="navbar-brand" href="{{route('home')}}">Shoes <i class="fas fa-broom"></i></a>
 
             </div>
 

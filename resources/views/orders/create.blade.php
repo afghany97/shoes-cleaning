@@ -70,7 +70,7 @@
 
                         <select name="shoes_id" class="form-control" required>
 
-                            <option value="">Select shoes type</option>
+                            <option selected disabled>Select shoes type</option>
 
                             @foreach($shoes as $shoe)
 
