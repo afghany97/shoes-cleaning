@@ -70,7 +70,9 @@
 
                         <label for="shoes">Shoes Type</label>
 
-                        <select name="shoes_id[]" id="shoes" class="form-control" required multiple>
+                        <select name="shoes_id" id="shoes" class="form-control" required>
+
+                            <option selected disabled>Select shoes type</option>
 
                             @foreach($shoes as $shoe)
 

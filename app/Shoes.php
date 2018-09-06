@@ -6,7 +6,7 @@ class Shoes extends Model
 {
     public function orders()
     {
-        return $this->belongsToMany(Order::class,'order_shoes');
+        return $this->hasMany(Order::class);
     }
 
     public static function addShoes()

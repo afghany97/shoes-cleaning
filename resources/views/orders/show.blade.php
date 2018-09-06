@@ -46,19 +46,7 @@
 
                         <li class="list-group-item">
 
-                            <strong>Shoes</strong> :
-
-                            <br>
-
-                            <ol>
-
-                                @foreach($order->shoes as $shoe)
-
-                                    <li>{{$shoe->type}}</li>
-
-                                @endforeach
-
-                            </ol>
+                            <strong>Shoes type: </strong> {{$order->shoes->type}}
 
                         </li>
 

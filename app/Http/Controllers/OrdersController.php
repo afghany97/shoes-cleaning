@@ -6,7 +6,6 @@ use App\Customer;
 use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
 use App\Order;
-use App\OrderShoes;
 use App\Shoes;
 use Illuminate\Http\Request;
 
@@ -58,13 +57,6 @@ class OrdersController extends Controller
         $customer = customer::fetchOrCreate();
 
         $order = order::createOrder($customer);
-
-        foreach (request('shoes_id') as $shoesID) {
-            OrderShoes::create([
-                'order_id' => $order->id,
-                'shoes_id' => $shoesID
-            ]);
-        }
 
         return ($customer && $order) ?
 

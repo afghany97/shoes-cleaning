@@ -34,6 +34,9 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
         'customer_id' => function () {
             return factory('App\Customer')->create()->id;
         },
+        'shoes_id' => function () {
+            return factory('App\Shoes')->create()->id;
+        },
         'price' => $faker->numberBetween(1, 100),
         'image_path' => $faker->imageUrl(),
         'delivery_date' => $faker->date()
@@ -60,6 +63,9 @@ $factory->state(App\Order::class, 'testing', function (Faker\Generator $faker) {
         'customer_id' => function () {
             return factory('App\Customer')->state('testing')->create()->id;
         },
+        'shoes_id' => function () {
+            return factory('App\Shoes')->state('testing')->create()->id;
+        },
         'price' => 199,
         'delivery_date' => $faker->date(),
         'image_path' => $faker->image('public/storage/images', 300, 400, null, false)
@@ -76,7 +82,7 @@ $factory->state(App\Order::class, 'create-order-testing', function (Faker\Genera
         'address' => 'cairo-testing',
         'name' => 'afghany-testing',
         'price' => 199999,
-//        'image' => "images/fXGskLPaOJwEZasfsaftesting8ESkepeMgtlOVQoXUhOhRvbIdvT.jpeg",
+        'image' => "images/fXGskLPaOJwEZasfsaftesting8ESkepeMgtlOVQoXUhOhRvbIdvT.jpeg",
         'delivery_date' => '2018-8-2018'
     ];
 });
