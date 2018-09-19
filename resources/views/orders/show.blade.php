@@ -50,9 +50,41 @@
 
                         </li>
 
+                        @if($order->status != config('order.status.delivered') && !$order->locker)
+
+                            <li class="list-group-item">
+
+                                <strong>Locker Number: </strong> Order has no locker
+
+                            </li>
+
+                        @endif
+
+                        @if($order->status != config('order.status.delivered') && $order->locker)
+
+                            <li class="list-group-item">
+
+                                <strong>Locker Number: </strong> {{$order->locker->number}}
+
+                            </li>
+
+                        @endif
+
+                        <li class="list-group-item">
+
+                            <strong>Note: </strong> {{$order->note}}
+
+                        </li>
+
                         <li class="list-group-item">
 
                             <strong>price: </strong> {{$order->price}}
+
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <strong>status: </strong> {{$order->status}}
 
                         </li>
 
@@ -90,5 +122,15 @@
         </div>
 
     </div>
+
+@if($order->sensitive)
+
+    @section('js')
+
+        <script src="{{url('js/Order.js')}}"></script>
+
+    @endsection
+
+@endif
 
 @endsection

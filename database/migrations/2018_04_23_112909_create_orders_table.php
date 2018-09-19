@@ -17,9 +17,13 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id')->index();
             $table->unsignedInteger('shoes_id')->index();
+            $table->unsignedInteger('locker_id')->nullable();
             $table->unsignedInteger('price');
             $table->string('image_path')->nullable();
             $table->string('barcode',50)->nullable();
+            $table->boolean("sensitive")->default(false);
+            $table->text("note")->nullable();
+            $table->string('status')->default(config('order.status.progress'));
             $table->timestamp('delivery_date');
             $table->timestamps();
         });

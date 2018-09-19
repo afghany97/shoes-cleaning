@@ -101,8 +101,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'start' => [
+            'valid_range' => 'This range is invalid',
         ],
     ],
 

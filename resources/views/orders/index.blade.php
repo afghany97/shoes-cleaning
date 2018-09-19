@@ -53,6 +53,18 @@
 
                             <a href="{{route('order.show',$order)}}" class="btn btn-default btn-xs">Show more</a>
 
+                            @if($order->status == config('order.status.progress'))
+
+                                <a href="{{route('order.complete',$order)}}" class="btn btn-success btn-xs pull-right" onclick="{{$isThereFreeCompletedLocker ? "" : "return confirm('there is no free lockers to move to , are you want to complete the operation?')"}}">Complete</a>
+
+                            @endif
+
+                            @if($order->status == config('order.status.completed'))
+
+                                <a href="{{route('order.deliver',$order)}}" class="btn btn-primary btn-xs pull-right">Deliver</a>
+
+                            @endif
+
                         </div>
 
                     </div>
@@ -89,19 +101,71 @@
 
                         <form method="GET" action="{{route('orders')}}">
 
-                            From :
+                            <div class="form-group">
 
-                            <input type="text" class="form-control" name="from" required placeholder="Pick from date"
-                                   onfocus="this.type='date'">
+                                From :
+
+                                <input type="text" class="form-control" name="from"  placeholder="Pick from date"
+                                       onfocus="this.type='date'">
+
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group">
+
+                                To :
+
+                                <input type="text" name="to" class="form-control" placeholder="Pick to date"
+                                       onfocus="this.type='date'">
+
+                            </div>
 
                             <hr>
 
-                            To :
+                            <div class="form-group">
 
-                            <input type="text" name="to" class="form-control" placeholder="Pick to date"
-                                   onfocus="this.type='date'">
+                                <select name="status" class="form-control">
 
-                            <hr>
+                                    <option selected disabled>Choose order status</option>
+
+                                    @foreach(config('order.status') as $stats)
+
+                                        <option value="{{$stats}}">{{$stats}}</option>
+
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input class="form-control" type="text" name="name" placeholder="please enter customer name">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <input class="form-control" type="number" name="mobile" placeholder="please enter customer mobile">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <select name="shoe" class="form-control">
+
+                                    <option selected disabled>Choose shoe type</option>
+
+                                    @foreach($shoes as $shoe)
+
+                                        <option value="{{$shoe->type}}">{{$shoe->type}}</option>
+
+                                    @endforeach
+
+                                </select>
+
+                            </div>
 
                             <button type="submit" class="btn btn-default btn-xs">search</button>
 

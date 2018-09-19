@@ -25,9 +25,6 @@
                         <input name="mobile" type="number" class="form-control" id="mobile"
                                placeholder="your mobile number" value="{{old('mobile')}}" required>
 
-                        <button onclick="search()" type="button" class="btn btn-default btn-xs">search</button>
-
-
                     </div>
 
                     <div class="form-group">
@@ -54,6 +51,16 @@
 
                         <input name="price" type="number" class="form-control" id="price" placeholder="price"
                                value="{{old('price')}}" required>
+
+                    </div>
+
+                    <div class="checkbox">
+
+                        <label>
+
+                            <input type="checkbox" name="sensitive" value="1"> Is sensitive
+
+                        </label>
 
                     </div>
 
@@ -95,13 +102,19 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="form-group">
+
+                        <label for="note">Note</label>
+
+                        <textarea name="note" type="text" class="form-control" id="note" placeholder="note...">{{old('note') ? old('note') : ""}}</textarea>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" onclick="{{$isThereFreeLocker ? "" : " return confirm('there is no free lockers , are you want to complete the operation?')"}}">Save</button>
 
                     <button class="btn btn-default" onclick="cancel()">cancel</button>
 
                 </form>
-
-                @include('layouts.errors')
 
             </div>
 

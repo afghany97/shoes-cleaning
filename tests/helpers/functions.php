@@ -1,18 +1,16 @@
 <?php 
 
-function create($class , $attributes = [] , $times = null,$state = 'testing')
+function create($class , $attributes = [] , $times = null)
 {
-	return factory($class, $times)->state($state)->create($attributes);
+	return factory($class, $times)->create($attributes);
 }
 
-function make($class , $attributes = [] , $times = null , $state = 'testing')
+function make($class , $attributes = [] , $times = null)
 {
-	return factory($class, $times)->state($state)->make($attributes);
+	return factory($class, $times)->make($attributes);
 }
 
-function raw($class , $attributes = [] , $times = null,$state = 'testing')
+function raw($class , $attributes = [] , $times = null)
 {
-	return factory($class, $times)->state($state)->raw($attributes);
+	return factory($class, $times)->raw($attributes);
 }
-
- ?>

@@ -20,6 +20,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// orders routes
+
 Route::get('/orders/create', 'OrdersController@create')->name('order.create');
 
 Route::post('/orders', 'OrdersController@store')->name('order.store');
@@ -28,9 +30,17 @@ Route::get('/orders', 'OrdersController@index')->name('orders');
 
 Route::get('/orders/{order}', 'OrdersController@show')->name('order.show');
 
+Route::get('/orders/{order}/complete', 'OrdersController@complete')->name('order.complete');
+
+Route::get('/orders/{order}/delivered', 'OrdersController@delivered')->name('order.deliver');
+
+// shoes routes
+
 Route::get('/shoes/create', 'ShoesController@create')->name('shoes.create');
 
 Route::post('/shoes', 'ShoesController@store')->name('shoes.store');
+
+// customer routes
 
 Route::get('/customers/find/{mobile}', 'CustomerController@show')->name('customer.find');
 
@@ -61,3 +71,14 @@ Route::get('/products/{product}/edit','ProductsController@edit')->name('product.
 Route::post('/products/{product}/update','ProductsController@update')->name('product.update');
 
 Route::delete('/products/{product}/delete','ProductsController@destroy')->name('product.destroy');
+
+
+// lockers routes
+
+Route::get('/lockers','LockersController@index')->name('lockers');
+
+Route::get('lockers/create','LockersController@create')->name('locker.create');
+
+Route::post('/lockers','LockersController@store')->name('locker.store');
+
+Route::delete('/lockers/{locker}','LockersController@destroy')->name('locker.destroy');
