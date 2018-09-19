@@ -199,7 +199,7 @@ class OrdersTest extends TestCase
     {
         $this->signIn();
 
-        $shoe = create('App\Shoes',['type' => 'addidas']);
+        $shoe = create('App\Shoe',['type' => 'addidas']);
 
         $order = create('App\Order',['shoes_id' => $shoe->id]);
 

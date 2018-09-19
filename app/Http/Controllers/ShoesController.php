@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\shoesFormRequest;
-use App\Shoes;
+use App\Shoe;
 use Illuminate\Http\Request;
 
 class ShoesController extends Controller
@@ -45,7 +45,7 @@ class ShoesController extends Controller
      */
     public function store(shoesFormRequest $formRequest)
     {
-        shoes::addShoes();
+        Shoe::addShoes();
 
         return back();
     }
@@ -53,10 +53,10 @@ class ShoesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\shoes  $shoes
+     * @param  \App\Shoe  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function show(shoes $shoes)
+    public function show(Shoe $shoes)
     {
         //
     }
@@ -64,10 +64,10 @@ class ShoesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\shoes  $shoes
+     * @param  \App\Shoe  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function edit(shoes $shoes)
+    public function edit(Shoe $shoes)
     {
         //
     }
@@ -76,10 +76,10 @@ class ShoesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\shoes  $shoes
+     * @param  \App\Shoe  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, shoes $shoes)
+    public function update(Request $request, Shoe $shoes)
     {
         //
     }
@@ -87,10 +87,10 @@ class ShoesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\shoes  $shoes
+     * @param  \App\Shoe  $shoes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(shoes $shoes)
+    public function destroy(Shoe $shoes)
     {
         //
     }

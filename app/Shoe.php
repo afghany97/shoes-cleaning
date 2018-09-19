@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Shoes extends Model
+class Shoe extends Model
 {
     public function orders()
     {

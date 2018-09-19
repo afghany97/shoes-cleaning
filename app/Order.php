@@ -20,7 +20,7 @@ class Order extends Model
 
     public function shoes()
     {
-        return $this->belongsTo(Shoes::class);
+        return $this->belongsTo(Shoe::class);
     }
 
     public function locker()

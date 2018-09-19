@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Shoes::class, function (Faker\Generator $faker) {
+$factory->define(App\Shoe::class, function (Faker\Generator $faker) {
     return [
         'type' => $faker->word
     ];
@@ -35,7 +35,7 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
             return factory('App\Customer')->create()->id;
         },
         'shoes_id' => function () {
-            return factory('App\Shoes')->create()->id;
+            return factory('App\Shoe')->create()->id;
         },
         'price' => $faker->numberBetween(1, 100),
         'image_path' => $faker->imageUrl(),

@@ -8,7 +8,7 @@ use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
 use App\Locker;
 use App\Order;
-use App\Shoes;
+use App\Shoe;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -33,7 +33,7 @@ class OrdersController extends Controller
 
         $orders = $orders->paginate(10);
 
-        $shoes = shoes::all();
+        $shoes = Shoe::all();
 
         return view('orders.index',compact('orders','shoes'));
     }
@@ -45,7 +45,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $shoes = shoes::all();
+        $shoes = Shoe::all();
 
         $isThereFreeLocker = !! Locker::free()->progress()->count();
 

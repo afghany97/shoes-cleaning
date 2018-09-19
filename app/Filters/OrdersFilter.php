@@ -9,7 +9,7 @@
 namespace App\Filters;
 
 use App\Customer;
-use App\Shoes;
+use App\Shoe;
 
 class OrdersFilter extends Filters
 {
@@ -47,7 +47,7 @@ class OrdersFilter extends Filters
 
     public function shoe()
     {
-        $shoe = Shoes::where('type' , request('shoe'))->first();
+        $shoe = Shoe::where('type' , request('shoe'))->first();
 
         return $this->query->where('shoes_id',$shoe ? $shoe->id : null);
     }
