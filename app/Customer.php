@@ -23,12 +23,10 @@ class Customer extends Model
 
     public static function fetchOrCreate()
     {
-        if(! request()->wantsJson())
+        return static::where('mobile' , request('mobile'))->firstOr(function(){
 
-            return static::where('mobile' , request('mobile'))->firstOr(function(){
-
-                return self::create(static::Data());
-            });
+            return self::create(static::Data());
+        });
 
     }
 }

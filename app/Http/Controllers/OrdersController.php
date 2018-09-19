@@ -35,7 +35,9 @@ class OrdersController extends Controller
 
         $shoes = Shoe::all();
 
-        return view('orders.index',compact('orders','shoes'));
+        $isThereFreeCompletedLocker = !! Locker::unDeleted()->free()->completed()->count();
+
+        return view('orders.index',compact('orders','shoes','isThereFreeCompletedLocker'));
     }
 
     /**
