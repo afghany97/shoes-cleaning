@@ -17,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Validator()->extend('mobile','App\Rules\mobile@passes');
+
+        Validator()->extend('validRange','App\Rules\CheckIfLockersRangeIsValid@passes');
     }
 
     /**

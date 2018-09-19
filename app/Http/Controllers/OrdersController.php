@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Events\OrderCreated;
 use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
+use App\Locker;
 use App\Order;
 use App\Shoes;
 use Illuminate\Http\Request;
@@ -27,11 +29,13 @@ class OrdersController extends Controller
      */
     public function index(OrdersFilter $filters)
     {
-        $orders = Order::latest()->Filter($filters);
+        $orders = Order::filter($filters);
 
         $orders = $orders->paginate(10);
 
-        return view('orders.index',compact('orders'));
+        $shoes = shoes::all();
+
+        return view('orders.index',compact('orders','shoes'));
     }
 
     /**
@@ -43,7 +47,9 @@ class OrdersController extends Controller
     {
         $shoes = shoes::all();
 
-        return view('orders.create' , compact('shoes'));
+        $isThereFreeLocker = !! Locker::free()->progress()->count();
+
+        return view('orders.create' , compact('shoes','isThereFreeLocker'));
     }
 
     /**
@@ -54,15 +60,45 @@ class OrdersController extends Controller
      */
     public function store(OrdersFormRequest $formRequest)
     {
-        $customer = customer::fetchOrCreate();
+        $customer = Customer::fetchOrCreate();
 
         $order = order::createOrder($customer);
+
+        event(new OrderCreated($order));
 
         return ($customer && $order) ?
 
             redirect(route('order.show',$order))->withSuccess('Order created successfully') :
 
             back()->withErrors('Create Order Fails');
+    }
+
+    public function complete(Order $order)
+    {
+        if($order->locker){
+
+            $order->locker->removeShoe()->setFree();
+
+            $order->removeLocker();
+        }
+
+        $order->complete()->moveToCompletedLocker();
+
+        return redirect(route('order.show',$order))->withSuccess('order completed successfully');
+    }
+
+    public function delivered(Order $order)
+    {
+        if($order->locker)
+        {
+            $order->locker->removeShoe()->setFree();
+
+            $order->removeLocker();
+        }
+
+        $order->delivered();
+
+        return redirect(route('orders'))->withSuccess('order delivered successfully');
     }
 
     /**

@@ -8,7 +8,7 @@ class Order extends Model
     {
         parent::boot();
 
-        static::created(function ($model){
+        static::created(function ($model) {
             $model->update(['barcode' => $model]);
         });
     }
@@ -23,9 +23,14 @@ class Order extends Model
         return $this->belongsTo(Shoes::class);
     }
 
+    public function locker()
+    {
+        return $this->hasOne(Locker::class);
+    }
+
     public function setBarcodeAttribute()
     {
-        $this->attributes['barcode'] = $this->created_at->year . str_pad((string)$this->id,4,'0',STR_PAD_LEFT);
+        $this->attributes['barcode'] = $this->created_at->year . $this->created_at->format('m') . str_pad((string)$this->id, 4, '0', STR_PAD_LEFT);
     }
 
     public static function createOrder($customer)
@@ -34,18 +39,22 @@ class Order extends Model
 
             'customer_id' => $customer->id,
 
-            'image_path' => request()->file('image')->store('images','public'),
+            'image_path' => request()->file('image')->store('images', 'public'),
 
             'shoes_id' => request('shoes_id'),
 
             'price' => request('price'),
 
-            'delivery_date' => request('delivery_date')
+            'delivery_date' => request('delivery_date'),
+
+            'sensitive' => !!request('sensitive'),
+
+            'note' => request('note')
 
         ]);
     }
 
-    public function scopeFilter($query,$filters)
+    public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
     }
@@ -53,5 +62,49 @@ class Order extends Model
     public function imagePath()
     {
         return "/storage/" . $this->image_path;
+    }
+
+    public function removeLocker()
+    {
+        $this->update(['locker_id' => null]);
+
+        return $this;
+    }
+
+    public function storeAt(Locker $locker)
+    {
+        return $this->update(['locker_id' => $locker->id]);
+    }
+
+    public function complete()
+    {
+        $this->update(['status' => config('order.status.completed')]);
+
+        return $this;
+    }
+
+    public function delivered()
+    {
+        $this->update(['status' => config('order.status.delivered')]);
+
+        return $this;
+    }
+
+    public function moveToCompletedLocker()
+    {
+        $completedLocker = Locker::where([['status', config('locker.status.free')], ['type', config('locker.type.completed')]])->unDeleted()->first();
+
+        if ($completedLocker) {
+
+            $completedLocker->keep($this);
+
+            $this->storeAt($completedLocker);
+
+            return true;
+
+        } else {
+
+            return false;
+        }
     }
 }

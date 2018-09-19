@@ -79,6 +79,8 @@
 
                                 <li><a href="{{route('products')}}">Products</a></li>
 
+                                <li><a href="{{route('lockers')}}">Lockers</a></li>
+
                                 <li role="separator" class="divider"></li>
 
                                 <li><a href="#">Separated link</a></li>
@@ -107,6 +109,8 @@
                                 <li><a href="{{route('supplier.create')}}">Supplier</a></li>
 
                                 <li><a href="{{route('product.create')}}">Product</a></li>
+
+                                <li><a href="{{route('locker.create')}}">Locker</a></li>
 
                             </ul>
 
