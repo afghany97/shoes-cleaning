@@ -28,26 +28,26 @@ class OrdersFilter extends Filters
 
     public function status()
     {
-        return $this->query->where('status',request('status'));
+        return $this->query->whereStatus(request('status'));
     }
 
     public function name()
     {
-        $customer = Customer::where('name',request('name'))->first();
+        $customer = Customer::whereName(request('name'))->first();
 
         return $this->query->where('customer_id' ,$customer ? $customer->id : null);
     }
 
     public function mobile()
     {
-        $customer = Customer::where('mobile',request('mobile'))->first();
+        $customer = Customer::whereMobile(request('mobile'))->first();
 
         return $this->query->where('customer_id',$customer ? $customer->id : null);
     }
 
     public function shoe()
     {
-        $shoe = Shoe::where('type' , request('shoe'))->first();
+        $shoe = Shoe::whereType(request('shoe'))->first();
 
         return $this->query->where('shoes_id',$shoe ? $shoe->id : null);
     }

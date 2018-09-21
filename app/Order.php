@@ -35,7 +35,7 @@ class Order extends Model
 
     public static function createOrder($customer)
     {
-        $data = [
+        return self::create(array_merge([
 
             'customer_id' => $customer->id,
 
@@ -49,13 +49,7 @@ class Order extends Model
 
             'note' => request('note')
 
-        ];
-
-        if(request('delivery_date'))
-
-            $data = array_merge($data,['delivery_date' => request('delivery_date')]);
-
-        return self::create($data);
+        ],request('delivery_date') ? ['delivery_date' => request('delivery_date')] : []));
     }
 
     public function scopeFilter($query, $filters)
@@ -96,19 +90,13 @@ class Order extends Model
 
     public function moveToCompletedLocker()
     {
-        $completedLocker = Locker::where([['status', config('locker.status.free')], ['type', config('locker.type.completed')]])->unDeleted()->first();
+        $completedLocker = Locker::free()->completed()->undeleted()->first();
 
         if ($completedLocker) {
 
             $completedLocker->keep($this);
 
             $this->storeAt($completedLocker);
-
-            return true;
-
-        } else {
-
-            return false;
         }
     }
 }

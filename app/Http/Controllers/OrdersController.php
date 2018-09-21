@@ -35,7 +35,7 @@ class OrdersController extends Controller
 
         $shoes = Shoe::all();
 
-        $isThereFreeCompletedLocker = !! Locker::unDeleted()->free()->completed()->count();
+        $isThereFreeCompletedLocker = !! Locker::undeleted()->free()->completed()->count();
 
         return view('orders.index',compact('orders','shoes','isThereFreeCompletedLocker'));
     }
@@ -77,6 +77,8 @@ class OrdersController extends Controller
 
     public function complete(Order $order)
     {
+        // convert this logic to event like ordercreated
+
         if($order->locker){
 
             $order->locker->removeShoe()->setFree();
@@ -91,6 +93,8 @@ class OrdersController extends Controller
 
     public function delivered(Order $order)
     {
+        // convert this logic to event like ordercreated
+
         if($order->locker)
         {
             $order->locker->removeShoe()->setFree();

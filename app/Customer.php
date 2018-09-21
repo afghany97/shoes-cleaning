@@ -9,7 +9,7 @@ class Customer extends Model
         return $this->hasMany('App\Order');
     }
 
-    public static function Data()
+    public static function data()
     {
         return [
 
@@ -23,9 +23,9 @@ class Customer extends Model
 
     public static function fetchOrCreate()
     {
-        return static::where('mobile' , request('mobile'))->firstOr(function(){
+        return static::whereMobile(request('mobile'))->firstOr(function(){
 
-            return self::create(static::Data());
+            return self::create(static::data());
         });
 
     }

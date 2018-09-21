@@ -48,6 +48,7 @@ class SuppliersController extends Controller
         $supplier = Supplier::create(request()->only('name','address','code','contact_person','contact_information'));
 
         return $supplier ?
+
             redirect(route('suppliers'))->withSuccess('Supplier created successfully') :
 
             back()->withErrors('Supplier creating fails');
@@ -87,6 +88,7 @@ class SuppliersController extends Controller
         $supplier = $supplier->update(request()->only('name','address','code','contact_person','contact_information'));
 
         return $supplier ?
+
             redirect(route('suppliers'))->withSuccess('Supplier updated successfully') :
 
             back()->withErrors('Supplier updating fails');
