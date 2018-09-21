@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -237,6 +238,28 @@ class OrdersTest extends TestCase
             ->assertSee($otherOrder->barcode)
 
             ->assertDontSee($order->barcode);
+    }
 
+    /** @test */
+
+    public function authenticated_user_can_filter_orders_by_from_to_dates_filter()
+    {
+        $this->signIn();
+
+        $order = create('App\Order',['created_at' => Carbon::today()->format('Y-m-d')]);
+
+        $otherOrder = create('App\Order',['created_at' => Carbon::today()->addMonths(1)->format('Y-m-d')]);
+
+        $from = Carbon::yesterday()->format('Y-m-d');
+
+        $to = Carbon::tomorrow()->format('Y-m-d');
+
+        $this->get(route('orders') . "?from=$from&to=$to")
+
+            ->assertStatus(200)
+
+            ->assertSee($order->barcode)
+
+            ->assertDontSee($otherOrder->barcode);
     }
 }
