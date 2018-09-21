@@ -35,7 +35,7 @@ class Order extends Model
 
     public static function createOrder($customer)
     {
-        return self::create([
+        $data = [
 
             'customer_id' => $customer->id,
 
@@ -45,13 +45,17 @@ class Order extends Model
 
             'price' => request('price'),
 
-            'delivery_date' => request('delivery_date'),
-
             'sensitive' => !!request('sensitive'),
 
             'note' => request('note')
 
-        ]);
+        ];
+
+        if(request('delivery_date'))
+
+            $data = array_merge($data,['delivery_date' => request('delivery_date')]);
+
+        return self::create($data);
     }
 
     public function scopeFilter($query, $filters)

@@ -34,8 +34,6 @@ class OrdersFormRequest extends FormRequest
 
             'price' => 'required|numeric',
 
-            'delivery_date' => 'required',
-
             'shoes_id' => 'required'
         ];
     }

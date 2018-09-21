@@ -95,10 +95,9 @@
 
                         <label for="delivery_date">delivery date</label>
 
-                        <input name="delivery_date" type="date" class="form-control" id="delivery_date"
-                               placeholder="delivery date"
-                               value="{{old('delivery_date') ? old('delivery_date') : \Carbon\Carbon::now()->addDay(2)->toDateString()}}"
-                               required>
+                        <input name="delivery_date" type="text" class="form-control" id="delivery_date"
+                               placeholder="pick delivery date by default after 2 days"
+                               onfocus="(this.type = 'date')">
 
                     </div>
 

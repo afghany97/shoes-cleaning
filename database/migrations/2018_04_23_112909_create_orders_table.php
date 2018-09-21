@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -24,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->boolean("sensitive")->default(false);
             $table->text("note")->nullable();
             $table->string('status')->default(config('order.status.progress'));
-            $table->timestamp('delivery_date');
+            $table->timestamp('delivery_date')->default(Carbon::now()->addDay(2)->format("Y-m-d"));
             $table->timestamps();
         });
     }
