@@ -13,7 +13,7 @@ use App\Shoe;
 
 class OrdersFilter extends Filters
 {
-    protected $filters = ['date','status','name','mobile','shoe'];
+    protected $filters = ['date','status','name','mobile','shoe','delivery'];
 
     public function apply($query)
     {
@@ -50,5 +50,10 @@ class OrdersFilter extends Filters
         $shoe = Shoe::whereType(request('shoe'))->first();
 
         return $this->query->where('shoes_id',$shoe ? $shoe->id : null);
+    }
+
+    public function delivery()
+    {
+        return $this->query->where('delivery_date',request('delivery'));
     }
 }

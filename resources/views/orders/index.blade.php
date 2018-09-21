@@ -167,6 +167,12 @@
 
                             </div>
 
+                            <div class="form-group">
+
+                                <input class="form-control" type="text" name="delivery" placeholder="pick delivery date" onfocus="(this.type = 'date')">
+
+                            </div>
+
                             <button type="submit" class="btn btn-default btn-xs">search</button>
 
                         </form>

@@ -211,4 +211,32 @@ class OrdersTest extends TestCase
 
             ->assertDontSee($this->order->barcode);
     }
+
+    /** @test */
+
+    public function authenticated_user_can_filter_orders_by_delivery_date()
+    {
+        $this->signIn();
+
+        $order = create('App\Order',['delivery_date' => "2018-10-18"]);
+
+        $otherOrder = create('App\Order',['delivery_date' => "2018-01-01"]);
+
+        $this->get(route('orders') . "?delivery=2018-10-18")
+
+            ->assertStatus(200)
+
+            ->assertSee($order->barcode)
+
+            ->assertDontSee($otherOrder->barcode);
+
+        $this->get(route('orders') . "?delivery=2018-01-01")
+
+            ->assertStatus(200)
+
+            ->assertSee($otherOrder->barcode)
+
+            ->assertDontSee($order->barcode);
+
+    }
 }
