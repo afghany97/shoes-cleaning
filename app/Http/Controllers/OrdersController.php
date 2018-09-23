@@ -49,7 +49,7 @@ class OrdersController extends Controller
     {
         $shoes = Shoe::all();
 
-        $isThereFreeLocker = !! Locker::free()->progress()->count();
+        $isThereFreeLocker = !! Locker::undeleted()->free()->progress()->count();
 
         return view('orders.create' , compact('shoes','isThereFreeLocker'));
     }
