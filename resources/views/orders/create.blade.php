@@ -69,7 +69,7 @@
                         <label for="image">Image</label>
 
                         <input name="image" type="file" class="form-control" id="image" value="{{old('image')}}"
-                               accept="image/*" required>
+                               accept="image/*">
 
                     </div>
 

@@ -28,8 +28,6 @@ class OrdersFormRequest extends FormRequest
 
             'mobile' => 'required|mobile|numeric',
 
-            'image' => 'required|image',
-
             'address' => 'required',
 
             'price' => 'required|numeric',
