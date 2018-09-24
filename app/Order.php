@@ -39,7 +39,7 @@ class Order extends Model
 
             'customer_id' => $customer->id,
 
-            'image_path' => request()->file('image')->store('images', 'public'),
+            'image_path' => request()->file('image') ? request()->file('image')->store('images', 'public') : null,
 
             'shoes_id' => request('shoes_id'),
 

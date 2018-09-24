@@ -2,7 +2,12 @@
 
 namespace Tests\Unit;
 
+use App\Locker;
+use App\Order;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class OrdersTest extends TestCase
@@ -13,7 +18,15 @@ class OrdersTest extends TestCase
     {
         parent::setUp();
 
-        $this->validOrderData = raw('App\Order',[],null,'create-order-testing');
+        $this->validOrderData = raw('App\Order');
+
+        $this->validOrderData = [
+            'mobile' => 12345678910,
+            'name' => 'afghany',
+            'address' => 'cairo',
+            'price' => 150,
+            'shoes_id' => 1
+        ];
 
         $this->invalidOrderData = [
 
@@ -54,6 +67,91 @@ class OrdersTest extends TestCase
             ->assertRedirect(route('login'))
 
             ->assertStatus(302);
+    }
+
+    /** @test */
+
+    public function authenticated_user_can_create_order_with_required_data()
+    {
+        $this->signIn();
+
+        $oldCount = Order::count();
+
+        $this->post(route('order.store'),$this->validOrderData)
+
+            ->assertStatus(302)
+
+            ->assertSessionHas('success');
+
+        $this->assertEquals($oldCount  + 1,Order::count());
+    }
+
+    /** @test */
+
+    public function authenticated_user_can_create_order_with_delivery_date()
+    {
+        $this->signIn();
+
+        $this->post(route('order.store'),array_merge($this->validOrderData,['delivery_date' => $date = Carbon::today()->addDays(5)->format("Y-m-d")]))
+
+            ->assertStatus(302)
+
+            ->assertSessionHas('success');
+
+//        $this->assertSame($date,Order::latest()->first()->delivery_date); // passes times and fails times !!
+
+        $this->assertDatabaseHas('orders',['delivery_date' => $date]);
+
+        $this->assertEquals(1,Order::where('delivery_date',$date)->count());
+    }
+
+    /** @test */
+
+    public function authenticated_user_can_create_order_with_out_free_lockers()
+    {
+        Locker::truncate();
+
+        $this->signIn();
+
+        $this->post(route('order.store'),$this->validOrderData)
+
+            ->assertStatus(302)
+
+            ->assertSessionHas('success');
+
+        $this->assertNull(Order::latest()->first()->locker_id);
+    }
+
+    /** @test */
+
+    public function authenticated_user_can_create_order_with_image()
+    {
+        $this->signIn();
+
+        Storage::fake("public");
+
+        $this->post(route('order.store'),array_merge($this->validOrderData,['image' => $image =UploadedFile::fake()->image('test.jpg')]))
+
+            ->assertStatus(302)
+
+            ->assertSessionHas('success');
+
+        Storage::disk("public")->assertExists('images/' . $image->hashName());
+    }
+
+    /** @test */
+
+    public function authenticated_user_can_create_order_with_note()
+    {
+        $this->signIn();
+
+        $this->post(route('order.store'),array_merge($this->validOrderData,['note' => $note = 'here is the order note']))
+
+            ->assertStatus(302)
+
+            ->assertSessionHas('success');
+
+        $this->assertDatabaseHas('orders',['note' => $note]);
     }
 
     // complete order test case's
