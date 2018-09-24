@@ -13,7 +13,7 @@ use App\Shoe;
 
 class OrdersFilter extends Filters
 {
-    protected $filters = ['date','status','name','mobile','shoe','delivery'];
+    protected $filters = ['date','status','name','mobile','shoe','delivery','sensitive'];
 
     public function apply($query)
     {
@@ -55,5 +55,10 @@ class OrdersFilter extends Filters
     public function delivery()
     {
         return $this->query->where('delivery_date',request('delivery'));
+    }
+
+    public function sensitive()
+    {
+        return $this->query->whereSensitive(true);
     }
 }

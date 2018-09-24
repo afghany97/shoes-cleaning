@@ -173,6 +173,17 @@
 
                             </div>
 
+                            <div class="form-group">
+
+                                <label>
+
+                                    <input type="checkbox" name="sensitive" value="1"> Sensitive
+
+                                </label>
+
+                            </div>
+
+
                             <button type="submit" class="btn btn-default btn-xs">search</button>
 
                         </form>

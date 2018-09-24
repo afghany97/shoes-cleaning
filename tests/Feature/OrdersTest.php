@@ -262,4 +262,23 @@ class OrdersTest extends TestCase
 
             ->assertDontSee($otherOrder->barcode);
     }
+
+    /** @test */
+
+    public function authenticated_user_can_filter_orders_by_sensitive_filter()
+    {
+        $this->signIn();
+
+        $order = create('App\Order',['sensitive' => true]);
+
+        $otherOrder = create('App\Order',['sensitive' => false]);
+
+        $this->get(route('orders') . "?sensitive=1")
+
+            ->assertStatus(200)
+
+            ->assertSee($order->barcode)
+
+            ->assertDontSee($otherOrder->barcode);
+    }
 }
