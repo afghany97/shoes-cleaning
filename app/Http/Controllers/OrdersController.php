@@ -8,6 +8,7 @@ use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
 use App\Locker;
 use App\Order;
+use App\Services\Export\ExcelGenerator;
 use App\Services\Export\PdfGenerator;
 use App\Shoe;
 use Illuminate\Http\Request;
@@ -36,9 +37,9 @@ class OrdersController extends Controller
 
         $shoes = Shoe::all();
 
-        $isThereFreeCompletedLocker = !! Locker::undeleted()->free()->completed()->count();
+        $isThereFreeCompletedLocker = !!Locker::undeleted()->free()->completed()->count();
 
-        return view('orders.index',compact('orders','shoes','isThereFreeCompletedLocker'));
+        return view('orders.index', compact('orders', 'shoes', 'isThereFreeCompletedLocker'));
     }
 
     /**
@@ -50,9 +51,9 @@ class OrdersController extends Controller
     {
         $shoes = Shoe::all();
 
-        $isThereFreeLocker = !! Locker::undeleted()->free()->progress()->count();
+        $isThereFreeLocker = !!Locker::undeleted()->free()->progress()->count();
 
-        return view('orders.create' , compact('shoes','isThereFreeLocker'));
+        return view('orders.create', compact('shoes', 'isThereFreeLocker'));
     }
 
     /**
@@ -71,7 +72,7 @@ class OrdersController extends Controller
 
         return ($customer && $order) ?
 
-            redirect(route('order.show',$order))->withSuccess('Order created successfully') :
+            redirect(route('order.show', $order))->withSuccess('Order created successfully') :
 
             back()->withErrors('Create Order Fails');
     }
@@ -80,7 +81,7 @@ class OrdersController extends Controller
     {
         // convert this logic to event like ordercreated
 
-        if($order->locker){
+        if ($order->locker) {
 
             $order->locker->removeShoe()->setFree();
 
@@ -89,15 +90,14 @@ class OrdersController extends Controller
 
         $order->complete()->moveToCompletedLocker();
 
-        return redirect(route('order.show',$order))->withSuccess('order completed successfully');
+        return redirect(route('order.show', $order))->withSuccess('order completed successfully');
     }
 
     public function delivered(Order $order)
     {
         // convert this logic to event like ordercreated
 
-        if($order->locker)
-        {
+        if ($order->locker) {
             $order->locker->removeShoe()->setFree();
 
             $order->removeLocker();
@@ -108,9 +108,9 @@ class OrdersController extends Controller
         return redirect(route('orders'))->withSuccess('order delivered successfully');
     }
 
-    public function exportToPdf(Order $order,PdfGenerator $pdfGenerator)
+    public function exportToPdf(Order $order, PdfGenerator $pdfGenerator)
     {
-        $html = view('export.orderToPdf',compact('order'))->render();
+        $html = view('export.orderToPdf', compact('order'))->render();
 
         return $pdfGenerator->setData($html)->setFilename($order->getPdfFileName())->generate() ?
 
@@ -118,21 +118,47 @@ class OrdersController extends Controller
 
             redirect()->route('orders')->withErrors('failed generate PDF');
     }
+
+    public function exportToExcel(ExcelGenerator $excel)
+    {
+        $orders = Order::all()->load(['customer', 'shoe'])->toArray();
+
+        $data = array_map(function ($order) {
+            return [
+                'id' => $order['id'],
+                'customer name' => $order['customer']['name'],
+                'customer mobile' => $order['customer']['mobile'],
+                'customer address' => $order['customer']['address'],
+                'price' => $order['price'],
+                'shoe type' => $order['shoe']['type'],
+                'status' => $order['status'],
+                'created date' => $order['created_at'],
+                'delivery_date' => $order['delivery_date']
+            ];
+        }, $orders);
+
+        return $excel->setData(collect($data))->generate() ?
+
+            redirect()->route('orders')->withSuccess('Excel file exported successfully') :
+
+            redirect()->route('orders')->withErrors('Failed export Excel file ');
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\order  $order
+     * @param  \App\order $order
      * @return \Illuminate\Http\Response
      */
     public function show(order $order)
     {
-        return view('orders.show',compact('order'));
+        return view('orders.show', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\order  $order
+     * @param  \App\order $order
      * @return \Illuminate\Http\Response
      */
     public function edit(order $order)
@@ -143,8 +169,8 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\order  $order
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\order $order
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, order $order)
@@ -155,7 +181,7 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\order  $order
+     * @param  \App\order $order
      * @return \Illuminate\Http\Response
      */
     public function destroy(order $order)
