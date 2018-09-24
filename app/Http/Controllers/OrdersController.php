@@ -8,6 +8,7 @@ use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
 use App\Locker;
 use App\Order;
+use App\Services\Export\PdfGenerator;
 use App\Shoe;
 use Illuminate\Http\Request;
 
@@ -107,6 +108,16 @@ class OrdersController extends Controller
         return redirect(route('orders'))->withSuccess('order delivered successfully');
     }
 
+    public function exportToPdf(Order $order,PdfGenerator $pdfGenerator)
+    {
+        $html = view('export.orderToPdf',compact('order'))->render();
+
+        return $pdfGenerator->setData($html)->setFilename($order->getPdfFileName())->generate() ?
+
+            redirect()->route('orders')->withSuccess('PDF generated successfully') :
+
+            redirect()->route('orders')->withErrors('failed generate PDF');
+    }
     /**
      * Display the specified resource.
      *

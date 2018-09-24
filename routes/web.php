@@ -34,6 +34,8 @@ Route::get('/orders/{order}/complete', 'OrdersController@complete')->name('order
 
 Route::get('/orders/{order}/delivered', 'OrdersController@delivered')->name('order.deliver');
 
+Route::get('/orders/{order}/export/pdf','OrdersController@exportToPdf')->name('order.export.pdf');
+
 // shoes routes
 
 Route::get('/shoes/create', 'ShoesController@create')->name('shoes.create');

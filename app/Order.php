@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+
 class Order extends Model
 {
     public static function boot()
@@ -18,9 +20,9 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function shoes()
+    public function shoe()
     {
-        return $this->belongsTo(Shoe::class);
+        return $this->belongsTo(Shoe::class,'shoes_id');
     }
 
     public function locker()
@@ -98,5 +100,10 @@ class Order extends Model
 
             $this->storeAt($completedLocker);
         }
+    }
+
+    public function getPdfFileName()
+    {
+        return "documents/pdf/" . $this->barcode . "_" .  Carbon::now()->timestamp . ".pdf";
     }
 }

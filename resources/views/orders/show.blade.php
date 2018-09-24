@@ -46,7 +46,7 @@
 
                         <li class="list-group-item">
 
-                            <strong>Shoes type: </strong> {{$order->shoes->type}}
+                            <strong>Shoes type: </strong> {{$order->shoe->type}}
 
                         </li>
 
