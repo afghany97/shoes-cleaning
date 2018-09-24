@@ -22,7 +22,7 @@ class Order extends Model
 
     public function shoe()
     {
-        return $this->belongsTo(Shoe::class,'shoes_id');
+        return $this->belongsTo(Shoe::class);
     }
 
     public function locker()
@@ -43,7 +43,7 @@ class Order extends Model
 
             'image_path' => request()->file('image') ? request()->file('image')->store('images', 'public') : null,
 
-            'shoes_id' => request('shoes_id'),
+            'shoe_id' => request('shoes_id'),
 
             'price' => request('price'),
 

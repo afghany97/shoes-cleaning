@@ -34,7 +34,7 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
         'customer_id' => function () {
             return factory('App\Customer')->create()->id;
         },
-        'shoes_id' => function () {
+        'shoe_id' => function () {
             return factory('App\Shoe')->create()->id;
         },
         'price' => $faker->numberBetween(1, 100),

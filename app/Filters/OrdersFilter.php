@@ -49,7 +49,7 @@ class OrdersFilter extends Filters
     {
         $shoe = Shoe::whereType(request('shoe'))->first();
 
-        return $this->query->where('shoes_id',$shoe ? $shoe->id : null);
+        return $this->query->where('shoe_id',$shoe ? $shoe->id : null);
     }
 
     public function delivery()

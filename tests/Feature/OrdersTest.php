@@ -102,7 +102,7 @@ class OrdersTest extends TestCase
 
             ->assertSee($this->order->customer->address)
 
-            ->assertSee($this->order->shoes->type)
+            ->assertSee($this->order->shoe->type)
 
             ->assertSee($this->order->note)
 
@@ -202,7 +202,7 @@ class OrdersTest extends TestCase
 
         $shoe = create('App\Shoe',['type' => 'addidas']);
 
-        $order = create('App\Order',['shoes_id' => $shoe->id]);
+        $order = create('App\Order',['shoe_id' => $shoe->id]);
 
         $this->get(route('orders') . "?shoe=addidas")
 
