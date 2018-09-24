@@ -49,7 +49,9 @@ class Order extends Model
 
             'sensitive' => !!request('sensitive'),
 
-            'note' => request('note')
+            'note' => request('note'),
+
+            'priority' => request('priority')
 
         ],request('delivery_date') ? ['delivery_date' => request('delivery_date')] : []));
     }
@@ -105,5 +107,10 @@ class Order extends Model
     public function getPdfFileName()
     {
         return "documents/pdf/" . $this->barcode . "_" .  Carbon::now()->timestamp . ".pdf";
+    }
+
+    public function scopePriority($query)
+    {
+        return $query->orderBy('priority','desc');
     }
 }

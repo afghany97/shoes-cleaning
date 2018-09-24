@@ -66,6 +66,22 @@
 
                     <div class="form-group">
 
+                        <label for="priority">Priority</label>
+
+                        <select name="priority" id="priority" class="form-control">
+
+                            @foreach(config('order.priority') as $key => $value)
+
+                                <option value="{{$value}}" {{$key == "default" ?? "selected"}}>{{$key}}</option>
+
+                            @endforeach
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
                         <label for="image">Image</label>
 
                         <input name="image" type="file" class="form-control" id="image" value="{{old('image')}}"

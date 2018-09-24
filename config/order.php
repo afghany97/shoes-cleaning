@@ -8,5 +8,8 @@
 
 return [
 
-    "status" => ['progress' => 'progress' , 'completed' => 'completed' , 'delivered' => 'delivered']
+    "status" => ['progress' => 'progress' , 'completed' => 'completed' , 'delivered' => 'delivered'],
+
+    "priority" => ['default' => 0 , 'urgent' => 1]
+
 ];

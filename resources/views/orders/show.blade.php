@@ -72,6 +72,12 @@
 
                         <li class="list-group-item">
 
+                            <strong>Priority: </strong> {{array_search($order->priority,config('order.priority'))}}
+
+                        </li>
+
+                        <li class="list-group-item">
+
                             <strong>Note: </strong> {{$order->note}}
 
                         </li>

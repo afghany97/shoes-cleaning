@@ -25,7 +25,8 @@ class OrdersTest extends TestCase
             'name' => 'afghany',
             'address' => 'cairo',
             'price' => 150,
-            'shoes_id' => 1
+            'shoes_id' => 1,
+            'priority' => config('order.priority.default')
         ];
 
         $this->invalidOrderData = [

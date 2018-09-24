@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->text("note")->nullable();
             $table->string('status')->default(config('order.status.progress'));
             $table->timestamp('delivery_date')->default(Carbon::now()->addDay(2)->format("Y-m-d"));
+            $table->unsignedInteger('priority');
             $table->timestamps();
         });
     }

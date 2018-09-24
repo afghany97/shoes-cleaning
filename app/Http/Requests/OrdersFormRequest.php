@@ -32,7 +32,9 @@ class OrdersFormRequest extends FormRequest
 
             'price' => 'required|numeric',
 
-            'shoes_id' => 'required'
+            'shoes_id' => 'required',
+
+            'priority' => 'required'
         ];
     }
 }
