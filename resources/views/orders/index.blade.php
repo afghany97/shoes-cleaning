@@ -40,12 +40,17 @@
                                 {{$order->barcode}}
 
                             </div>
-                            
-                            <div class="pull-right">
 
-                                <img src="{{$order->imagePath()}}" alt="" class="tiny-image">
-                                
-                            </div>
+                            @if($order->hasImages())
+
+                                <div class="pull-right">
+
+                                    <img src="{{$order->media()->images()->first()->fullPath()}}" alt=""
+                                         class="tiny-image">
+
+                                </div>
+
+                            @endif
 
                         </div>
 
@@ -57,7 +62,8 @@
 
                             @if($order->status == config('order.status.progress'))
 
-                                <a href="{{route('order.complete',$order)}}" class="btn btn-success btn-xs pull-right" onclick="{{$isThereFreeCompletedLocker ? "" : "return confirm('there is no free lockers to move to , are you want to complete the operation?')"}}">Complete</a>
+                                <a href="{{route('order.complete',$order)}}" class="btn btn-success btn-xs pull-right"
+                                   onclick="{{$isThereFreeCompletedLocker ? "" : "return confirm('there is no free lockers to move to , are you want to complete the operation?')"}}">Complete</a>
 
                             @endif
 
@@ -107,7 +113,7 @@
 
                                 From :
 
-                                <input type="text" class="form-control" name="from"  placeholder="Pick from date"
+                                <input type="text" class="form-control" name="from" placeholder="Pick from date"
                                        onfocus="this.type='date'">
 
                             </div>
@@ -143,13 +149,15 @@
 
                             <div class="form-group">
 
-                                <input class="form-control" type="text" name="name" placeholder="please enter customer name">
+                                <input class="form-control" type="text" name="name"
+                                       placeholder="please enter customer name">
 
                             </div>
 
                             <div class="form-group">
 
-                                <input class="form-control" type="number" name="mobile" placeholder="please enter customer mobile">
+                                <input class="form-control" type="number" name="mobile"
+                                       placeholder="please enter customer mobile">
 
                             </div>
 
@@ -171,7 +179,8 @@
 
                             <div class="form-group">
 
-                                <input class="form-control" type="text" name="delivery" placeholder="pick delivery date" onfocus="(this.type = 'date')">
+                                <input class="form-control" type="text" name="delivery" placeholder="pick delivery date"
+                                       onfocus="(this.type = 'date')">
 
                             </div>
 

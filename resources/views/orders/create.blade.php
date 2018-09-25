@@ -84,7 +84,7 @@
 
                         <label for="image">Image</label>
 
-                        <input name="image" type="file" class="form-control" id="image" value="{{old('image')}}"
+                        <input name="images[]" type="file" class="form-control" id="image" value="{{old('image')}}" multiple
                                accept="image/*">
 
                     </div>

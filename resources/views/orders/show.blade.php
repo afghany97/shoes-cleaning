@@ -94,12 +94,21 @@
 
                         </li>
 
-                        <li class="list-group-item">
+                        @if($order->hasImages())
 
-                            <strong>Order image: </strong> <img src="{{$order->imagePath()}}" alt="image"
-                                                                class="small-image">
+                            <li class="list-group-item">
 
-                        </li>
+                                <strong>Order images: </strong>
+
+                                @foreach($order->media()->images()->get() as $image)
+
+                                    <img src="{{$image->fullPath()}}" alt="image" class="small-image" width="{{ 85 / $order->media()->images()->count()}}%">
+
+                                @endforeach
+
+                            </li>
+
+                        @endif
 
                         <li class="list-group-item">
 

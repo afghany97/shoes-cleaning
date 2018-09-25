@@ -11,7 +11,6 @@ use App\Order;
 use App\Services\Export\ExcelGenerator;
 use App\Services\Export\PdfGenerator;
 use App\Shoe;
-use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
@@ -67,6 +66,14 @@ class OrdersController extends Controller
         $customer = Customer::fetchOrCreate();
 
         $order = order::createOrder($customer);
+
+        if(request()->file('images')){
+
+            foreach (request()->file('images') as $image){
+
+                $order->image($image->store('images/orders','public'));
+            }
+        }
 
         event(new OrderCreated($order));
 
@@ -169,11 +176,10 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  \App\order $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, order $order)
+    public function update(order $order)
     {
         //
     }

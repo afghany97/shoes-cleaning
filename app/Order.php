@@ -6,6 +6,8 @@ use Carbon\Carbon;
 
 class Order extends Model
 {
+    use mediable;
+
     public static function boot()
     {
         parent::boot();
@@ -41,8 +43,6 @@ class Order extends Model
 
             'customer_id' => $customer->id,
 
-            'image_path' => request()->file('image') ? request()->file('image')->store('images', 'public') : null,
-
             'shoe_id' => request('shoes_id'),
 
             'price' => request('price'),
@@ -59,11 +59,6 @@ class Order extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
-    }
-
-    public function imagePath()
-    {
-        return "/storage/" . $this->image_path;
     }
 
     public function removeLocker()

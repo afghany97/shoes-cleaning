@@ -20,7 +20,6 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('shoe_id')->index();
             $table->unsignedInteger('locker_id')->nullable();
             $table->unsignedInteger('price');
-            $table->string('image_path')->nullable();
             $table->string('barcode',50)->nullable();
             $table->boolean("sensitive")->default(false);
             $table->text("note")->nullable();

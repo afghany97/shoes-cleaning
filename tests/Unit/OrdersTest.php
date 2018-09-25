@@ -18,8 +18,6 @@ class OrdersTest extends TestCase
     {
         parent::setUp();
 
-        $this->validOrderData = raw('App\Order');
-
         $this->validOrderData = [
             'mobile' => 12345678910,
             'name' => 'afghany',
@@ -125,19 +123,28 @@ class OrdersTest extends TestCase
 
     /** @test */
 
-    public function authenticated_user_can_create_order_with_image()
+    public function authenticated_user_can_create_order_with_images()
     {
         $this->signIn();
 
         Storage::fake("public");
 
-        $this->post(route('order.store'),array_merge($this->validOrderData,['image' => $image =UploadedFile::fake()->image('test.jpg')]))
+        $images = [
+            UploadedFile::fake()->image(str_random(10) . "jpg"),
+            UploadedFile::fake()->image(str_random(10) . "jpg"),
+            UploadedFile::fake()->image(str_random(10) . "jpg"),
+        ];
+
+        $this->post(route('order.store'),array_merge($this->validOrderData,['images' => $images]))
 
             ->assertStatus(302)
 
             ->assertSessionHas('success');
 
-        Storage::disk("public")->assertExists('images/' . $image->hashName());
+        foreach ($images as $image){
+
+            Storage::disk("public")->assertExists('images/orders/' . $image->hashName());
+        }
     }
 
     /** @test */
@@ -146,7 +153,7 @@ class OrdersTest extends TestCase
     {
         $this->signIn();
 
-        $this->post(route('order.store'),array_merge($this->validOrderData,['note' => $note = 'here is the order note']))
+        $this->post(route('order.store'),array_merge($this->validOrderData,['note' => $note = str_random()]))
 
             ->assertStatus(302)
 

@@ -38,7 +38,6 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
             return factory('App\Shoe')->create()->id;
         },
         'price' => $faker->numberBetween(1, 100),
-        'image_path' => $faker->imageUrl(),
         'delivery_date' => $faker->date(),
         'priority' => config('order.priority.default')
     ];
