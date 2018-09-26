@@ -4,6 +4,8 @@ namespace App;
 
 class Product extends Model
 {
+    use mediable;
+
     protected $with = ['supplier'];
 
     protected static function boot()
@@ -24,10 +26,5 @@ class Product extends Model
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
-    }
-
-    public function imagePath()
-    {
-        return "/storage/" . $this->image_path;
     }
 }

@@ -98,24 +98,6 @@
 
                 </div>
 
-                <hr>
-
-                <div class="panel panel-default">
-
-                    <div class="panel panel-heading">
-
-                        <strong>Selected Image</strong>
-
-                    </div>
-
-                    <div class="panel-body">
-
-                        <img class="small-image" id="blah" src="{{$product->imagePath()}}" alt="your image"/>
-
-                    </div>
-
-                </div>
-
             </div>
 
         </div>

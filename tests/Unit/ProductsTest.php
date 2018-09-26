@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ProductsTest extends TestCase
@@ -63,6 +65,33 @@ class ProductsTest extends TestCase
             ->assertSessionHas('success');
     }
 
+    /** @test */
+
+    public function authenticated_user_can_creaet_product_with_images()
+    {
+        $this->signIn();
+
+        $images = [
+            UploadedFile::fake()->image(str_random(10) . "jpg"),
+            UploadedFile::fake()->image(str_random(10) . "jpg"),
+            UploadedFile::fake()->image(str_random(10) . "jpg"),
+        ];
+
+        Storage::fake("public");
+
+        $this->post(route('product.store'),array_merge($this->validProductData,['images' => $images]))
+
+            ->assertStatus(302)
+
+            ->assertRedirect(route('products'))
+
+            ->assertSessionHas('success');
+
+        foreach ($images as $image){
+
+            Storage::disk("public")->assertExists("images/products/" . $image->hashName());
+        }
+    }
     // update product test case's
 
     /** @test */

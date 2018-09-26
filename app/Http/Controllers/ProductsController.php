@@ -25,7 +25,7 @@ class ProductsController extends Controller
     {
         $products = Product::latest()->undeleted()->get();
 
-        return view('products.index',compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -48,13 +48,15 @@ class ProductsController extends Controller
      */
     public function store(ProductCreateFormRequest $formRequest)
     {
-        request('image_path') ?
+        $product = Product::create(request()->only(['supplier_id', 'description', 'price', 'quantity']));
 
-            $imageData = ['image_path' => request()->file('image_path')->store('products_images','public')] :
+        if (request()->file('images')) {
 
-            $imageData = [];
+            foreach (request()->file('images') as $image) {
 
-        $product = Product::create(array_merge(request()->only(['supplier_id','description','price','quantity']),$imageData));
+                $product->image($image->store('images/products', 'public'));
+            }
+        }
 
         return $product ?
 
@@ -84,7 +86,7 @@ class ProductsController extends Controller
     {
         $suppliers = Supplier::pluck('name', 'id');
 
-        return view('products.edit',compact('product','suppliers'));
+        return view('products.edit', compact('product', 'suppliers'));
     }
 
     /**
@@ -94,15 +96,15 @@ class ProductsController extends Controller
      * @param ProductCreateFormRequest $formRequest
      * @return void
      */
-    public function update(Product $product,ProductCreateFormRequest $formRequest)
+    public function update(Product $product, ProductCreateFormRequest $formRequest)
     {
         request('image_path') ?
 
-            $imageData = ['image_path' => request()->file('image_path')->store('products_images','public')] :
+            $imageData = ['image_path' => request()->file('image_path')->store('products_images', 'public')] :
 
             $imageData = [];
 
-        $updated = $product->update(array_merge(request()->only(['supplier_id','description','price','quantity']),$imageData));
+        $updated = $product->update(array_merge(request()->only(['supplier_id', 'description', 'price', 'quantity']), $imageData));
 
         return $updated ?
 

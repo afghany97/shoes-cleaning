@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('supplier_id');
             $table->text('description');
-            $table->string('image_path')->nullable();
+//            $table->string('image_path')->nullable();
             $table->float('price');
             $table->boolean('deleted')->default(false);
             $table->string('barcode')->nullable();

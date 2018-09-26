@@ -67,8 +67,7 @@
 
                         <label for="image">Image</label>
 
-                        <input name="image_path" type="file" class="form-control" id="image"
-                               placeholder="product image" value="{{old('image')}}">
+                        <input name="images[]" type="file" class="form-control" id="image" multiple accept="image/*">
 
                     </div>
 
