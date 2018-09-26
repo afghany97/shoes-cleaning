@@ -75,6 +75,14 @@ class OrdersController extends Controller
             }
         }
 
+        if(request()->file('videos')){
+
+            foreach (request()->file('videos') as $video){
+
+                $order->video($video->store('videos/orders','public'));
+            }
+        }
+
         event(new OrderCreated($order));
 
         return ($customer && $order) ?

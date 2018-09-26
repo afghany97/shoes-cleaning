@@ -110,6 +110,28 @@
 
                         @endif
 
+                        @if($order->hasVideos())
+
+                            <li class="list-group-item">
+
+                                <strong>Order Videos: </strong>
+
+                                @foreach($order->media()->videos()->get() as $video)
+
+                                    <video width="{{ 85 / $order->media()->videos()->count()}}%" controls class="small-image">
+
+                                        <source src="{{$video->fullPath()}}" type="video/{{$video->getFileExtension()}}">
+
+                                        Your browser does not support HTML5 video.
+
+                                    </video>
+
+                                @endforeach
+
+                            </li>
+
+                        @endif
+
                         <li class="list-group-item">
 
                             <strong>Order date: </strong> {{$order->created_at->format('Y-m-d')}}

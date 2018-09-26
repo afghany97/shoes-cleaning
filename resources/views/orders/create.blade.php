@@ -84,14 +84,22 @@
 
                         <label for="image">Image</label>
 
-                        <input name="images[]" type="file" class="form-control" id="image" value="{{old('image')}}" multiple
-                               accept="image/*">
+                        <input name="images[]" type="file" class="form-control" id="image" accept="image/*" multiple>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="shoes">Shoes Type</label>
+                        <label for="video">Video</label>
+
+                        <input name="videos[]" type="file" class="form-control" id="video" accept="video/*" multiple>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="shoes">Shoe Type</label>
 
                         <select name="shoes_id" id="shoes" class="form-control" required>
 

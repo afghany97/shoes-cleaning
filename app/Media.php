@@ -23,4 +23,11 @@ class Media extends Model
     {
         return "/storage/" . $this->path;
     }
+
+    public function getFileExtension()
+    {
+        $explode = explode(".",$this->path);
+
+        return end($explode);
+    }
 }
