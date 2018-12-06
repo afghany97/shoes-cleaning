@@ -31,7 +31,7 @@ class OrdersController extends Controller
      */
     public function index(OrdersFilter $filters)
     {
-        $orders = Order::priority()->filter($filters);
+        $orders = Order::latest()->priority()->filter($filters);
 
         $orders = $orders->paginate(10);
 
