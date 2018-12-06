@@ -60,9 +60,13 @@
 
                             <a href="{{route('order.export.pdf',$order)}}" class="btn btn-default btn-xs">Export PDF</a>
 
-                            <a href="{{route('order.edit',$order)}}" class="btn btn-primary btn-xs">Edit Order</a>
+                            @if($order->status != config('order.status.delivered'))
 
-                        @if($order->status == config('order.status.progress'))
+                                <a href="{{route('order.edit',$order)}}" class="btn btn-primary btn-xs">Edit Order</a>
+
+                            @endif
+
+                            @if($order->status == config('order.status.progress'))
 
                                 <a href="{{route('order.complete',$order)}}" class="btn btn-success btn-xs pull-right"
                                    onclick="{{$isThereFreeCompletedLocker ? "" : "return confirm('there is no free lockers to move to , are you want to complete the operation?')"}}">Complete</a>
