@@ -19,6 +19,16 @@ class Media extends Model
         return $query->whereType('video');
     }
 
+    public function scopeBefore($query)
+    {
+        return $query->wherePeriod('before');
+    }
+
+    public function scopeAfter($query)
+    {
+        return $query->wherePeriod('after');
+    }
+
     public function fullPath()
     {
         return "/storage/" . $this->path;

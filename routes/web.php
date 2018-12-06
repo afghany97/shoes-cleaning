@@ -41,6 +41,10 @@ Route::get('/orders/{order}/export/pdf','OrdersController@exportToPdf')->name('o
 
 Route::get('orders/export/excel','OrdersController@exportToExcel')->name('orders.export.excel');
 
+Route::get('orders/{order}/edit','OrdersController@edit')->name('order.edit');
+
+Route::post('/orders/{order}/update', 'OrdersController@update')->name('order.update');
+
 // shoes routes
 
 Route::get('/shoes/create', 'ShoesController@create')->name('shoes.create');

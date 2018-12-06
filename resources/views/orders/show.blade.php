@@ -94,15 +94,33 @@
 
                         </li>
 
-                        @if($order->hasImages())
+                        @if($order->hasBeforeImages())
 
                             <li class="list-group-item">
 
-                                <strong>Order images: </strong>
+                                <strong>Before Images: </strong>
 
-                                @foreach($order->media()->images()->get() as $image)
+                                @foreach($order->media()->images()->before()->get() as $image)
 
-                                    <img src="{{$image->fullPath()}}" alt="image" class="small-image" width="{{ 85 / $order->media()->images()->count()}}%">
+                                    <img src="{{$image->fullPath()}}" alt="image" class="small-image"
+                                         width="{{ 85 / $order->media()->images()->count()}}%">
+
+                                @endforeach
+
+                            </li>
+
+                        @endif
+
+                        @if($order->hasAfterImages())
+
+                            <li class="list-group-item">
+
+                                <strong>After images: </strong>
+
+                                @foreach($order->media()->images()->after()->get() as $image)
+
+                                    <img src="{{$image->fullPath()}}" alt="image" class="small-image"
+                                         width="{{ 85 / $order->media()->images()->count()}}%">
 
                                 @endforeach
 
@@ -118,9 +136,11 @@
 
                                 @foreach($order->media()->videos()->get() as $video)
 
-                                    <video width="{{ 85 / $order->media()->videos()->count()}}%" controls class="small-image">
+                                    <video width="{{ 85 / $order->media()->videos()->count()}}%" controls
+                                           class="small-image">
 
-                                        <source src="{{$video->fullPath()}}" type="video/{{$video->getFileExtension()}}">
+                                        <source src="{{$video->fullPath()}}"
+                                                type="video/{{$video->getFileExtension()}}">
 
                                         Your browser does not support HTML5 video.
 
@@ -146,7 +166,8 @@
 
                         <li class="list-group-item">
 
-                            <strong>delivery date :</strong> {{\Carbon\Carbon::parse($order->delivery_date)->format('Y-m-d')}}
+                            <strong>delivery date
+                                :</strong> {{\Carbon\Carbon::parse($order->delivery_date)->format('Y-m-d')}}
 
                         </li>
 
@@ -160,13 +181,13 @@
 
     </div>
 
-@if($order->sensitive)
+    @if($order->sensitive)
 
-    @section('js')
+@section('js')
 
-        <script src="{{url('js/Order.js')}}"></script>
+    <script src="{{url('js/Order.js')}}"></script>
 
-    @endsection
+@endsection
 
 @endif
 

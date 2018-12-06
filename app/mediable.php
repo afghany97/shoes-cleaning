@@ -21,19 +21,19 @@ trait mediable
         return $this->media()->create($data);
     }
 
-    public function image($path)
+    public function image($path,$period)
     {
-        return $this->storeMedia(['path' => $path, 'type' => 'image']);
+        return $this->storeMedia(['path' => $path, 'type' => 'image','period' => $period]);
     }
 
-    public function video($path)
+    public function video($path,$period)
     {
-        return $this->storeMedia(['path' => $path, 'type' => 'video']);
+        return $this->storeMedia(['path' => $path, 'type' => 'video','period' => $period]);
     }
 
-    public function hasImages()
+    public function hasImages($period)
     {
-        return !! $this->media()->images()->count();
+        return !! $this->media()->images()->$period()->count();
     }
 
     public function hasVideos()
@@ -41,4 +41,33 @@ trait mediable
         return !! $this->media()->videos()->count();
     }
 
+    public function beforeImage($path)
+    {
+        return $this->image($path,'before');
+    }
+
+    public function afterImage($path)
+    {
+        return $this->image($path,'after');
+    }
+
+    public function beforeVideo($path)
+    {
+        return $this->video($path,'before');
+    }
+
+    public function afterVideo($path)
+    {
+        return $this->video($path,'after');
+    }
+
+    public function hasBeforeImages()
+    {
+        return $this->hasImages('before');
+    }
+
+    public function hasAfterImages()
+    {
+        return $this->hasImages('after');
+    }
 }

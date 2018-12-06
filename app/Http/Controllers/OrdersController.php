@@ -6,6 +6,7 @@ use App\Customer;
 use App\Events\OrderCreated;
 use App\Filters\OrdersFilter;
 use App\Http\Requests\OrdersFormRequest;
+use App\Http\Requests\UpdateOrderFormRequest;
 use App\Locker;
 use App\Order;
 use App\Services\Export\ExcelGenerator;
@@ -71,7 +72,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('images') as $image){
 
-                $order->image($image->store('images/orders','public'));
+                $order->beforeImage($image->store('images/orders','public'));
             }
         }
 
@@ -105,7 +106,7 @@ class OrdersController extends Controller
 
         $order->complete()->moveToCompletedLocker();
 
-        return redirect(route('orders', $order))->withSuccess('order completed successfully');
+        return redirect(route('order.edit', $order))->withSuccess('order completed successfully');
     }
 
     public function delivered(Order $order)
@@ -178,18 +179,63 @@ class OrdersController extends Controller
      */
     public function edit(order $order)
     {
-        //
+        $shoes = Shoe::all();
+
+        $isThereFreeLocker = !!Locker::undeleted()->free()->progress()->count();
+
+        return view('orders.edit',compact('order','shoes','isThereFreeLocker'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\order $order
-     * @return \Illuminate\Http\Response
+     * @param UpdateOrderFormRequest $formRequest
+     * @return void
      */
-    public function update(order $order)
+    public function update(order $order,UpdateOrderFormRequest $formRequest)
     {
-        //
+        $updated = $order->update([
+            'shoe_id' => request('shoes_id'),
+            'price' => request('price'),
+            'sensitive' => !!request('sensitive'),
+            'priority' => request('priority'),
+            'delivery_date' => request('delivery_date') ? request('delivery_date') : null
+            ]);
+
+        if(request()->file('before_images')){
+
+            foreach (request()->file('before_images') as $image){
+
+                $order->beforeImage($image->store('images/orders','public'));
+            }
+        }
+
+        if(request()->file('after_images')){
+
+            foreach (request()->file('after_images') as $image){
+
+                $order->afterImage($image->store('images/orders','public'));
+            }
+        }
+
+        if(request()->file('before_videos')){
+
+            foreach (request()->file('before_videos') as $video){
+
+                $order->beforeVideo($video->store('videos/orders','public'));
+            }
+        }
+
+        if(request()->file('after_videos')){
+
+            foreach (request()->file('after_videos') as $video){
+
+                $order->afterVideo($video->store('videos/orders','public'));
+            }
+        }
+
+        return $updated ? redirect(route('order.show',$order))->withSuccess('Order updated successfully') : back()->withErrors("Failed to updated order");
     }
 
     /**
