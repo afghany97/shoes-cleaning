@@ -200,7 +200,8 @@ class OrdersController extends Controller
             'price' => request('price'),
             'sensitive' => !!request('sensitive'),
             'priority' => request('priority'),
-            'delivery_date' => request('delivery_date') ? request('delivery_date') : null
+            'delivery_date' => request('delivery_date') ? request('delivery_date') : null,
+            'note' => request('note')
             ]);
 
         if(request()->file('before_images')){
