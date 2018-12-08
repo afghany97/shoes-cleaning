@@ -106,7 +106,7 @@ class OrdersController extends Controller
 
         $order->complete()->moveToCompletedLocker();
 
-        return redirect(route('order.edit', $order))->withSuccess('order completed successfully');
+        return redirect(route('orders'))->withSuccess('order completed successfully');
     }
 
     public function delivered(Order $order)
