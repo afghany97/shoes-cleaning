@@ -93,3 +93,7 @@ Route::get('lockers/create','LockersController@create')->name('locker.create');
 Route::post('/lockers','LockersController@store')->name('locker.store');
 
 Route::delete('/lockers/{locker}','LockersController@destroy')->name('locker.destroy');
+
+// expenses routes
+
+Route::resource('expenses','ExpensesController');
