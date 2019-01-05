@@ -72,7 +72,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('images') as $image){
 
-                $order->beforeImage($image->store('images/orders','public'));
+                $order->beforeImage($image->store("images/orders/$order->barcode/before",'public'));
             }
         }
 
@@ -80,7 +80,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('videos') as $video){
 
-                $order->video($video->store('videos/orders','public'));
+                $order->video($video->store("videos/orders/$order->barcode/before",'public'));
             }
         }
 
@@ -208,7 +208,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('before_images') as $image){
 
-                $order->beforeImage($image->store('images/orders','public'));
+                $order->beforeImage($image->store("images/orders/$order->barcode/before",'public'));
             }
         }
 
@@ -216,7 +216,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('after_images') as $image){
 
-                $order->afterImage($image->store('images/orders','public'));
+                $order->afterImage($image->store("images/orders/$order->barcode/after",'public'));
             }
         }
 
@@ -224,7 +224,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('before_videos') as $video){
 
-                $order->beforeVideo($video->store('videos/orders','public'));
+                $order->beforeVideo($video->store("videos/orders/$order->barcode/before",'public'));
             }
         }
 
@@ -232,7 +232,7 @@ class OrdersController extends Controller
 
             foreach (request()->file('after_videos') as $video){
 
-                $order->afterVideo($video->store('videos/orders','public'));
+                $order->afterVideo($video->store("videos/orders/$order->barcode/after",'public'));
             }
         }
 
