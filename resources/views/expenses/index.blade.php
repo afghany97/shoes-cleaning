@@ -22,20 +22,6 @@
 
                             {{$expens->quantity}}
 
-                            <div class="pull-right">
-
-                                <form action="{{route('expenses.destroy',$expens)}}" method="post">
-
-                                    {{csrf_field()}}
-
-                                    {{method_field('DELETE')}}
-
-                                    <button class="btn btn-xs btn-danger">Delete</button>
-
-                                </form>
-
-                            </div>
-
                         </div>
 
                         <div class="panel-body">

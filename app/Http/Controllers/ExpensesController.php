@@ -91,12 +91,6 @@ class ExpensesController extends Controller
      */
     public function destroy(expense $expense)
     {
-        $deleted = $expense->delete();
-
-        return $deleted ?
-
-            redirect()->route('expenses.index')->withSuccess('Expense deleted successfully') :
-
-            back()->withErrors("Failed to delete Expense");
+        //
     }
 }
