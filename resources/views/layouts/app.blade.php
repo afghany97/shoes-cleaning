@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="rtl">
 
 <head>
 
@@ -52,7 +52,7 @@
 
                 </button>
 
-                <a class="navbar-brand" href="{{route('home')}}">Shoes <i class="fas fa-broom"></i></a>
+                <a class="navbar-brand" href="{{route('home')}}">Brighto <i class="fas fa-broom"></i></a>
 
             </div>
 
@@ -69,27 +69,27 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
 
-                               aria-expanded="false">Browse <span class="caret"></span></a>
+                               aria-expanded="false">تصفح <span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
 
-                                <li><a href="{{route('orders')}}">Orders</a></li>
+                                <li><a href="{{route('orders')}}">الاوامر</a></li>
 
-                                <li><a href="{{route('suppliers')}}">Suppliers</a></li>
+                                {{--<li><a href="{{route('suppliers')}}">Suppliers</a></li>--}}
 
-                                <li><a href="{{route('products')}}">Products</a></li>
+                                {{--<li><a href="{{route('products')}}">Products</a></li>--}}
 
-                                <li><a href="{{route('lockers')}}">Lockers</a></li>
+                                {{--<li><a href="{{route('lockers')}}">Lockers</a></li>--}}
 
-                                <li><a href="{{route('expenses.index')}}">Expenses</a></li>
+                                <li><a href="{{route('expenses.index')}}">المصروفات</a></li>
 
-                                <li role="separator" class="divider"></li>
+                                {{--<li role="separator" class="divider"></li>--}}
 
-                                <li><a href="#">Separated link</a></li>
+                                {{--<li><a href="#">Separated link</a></li>--}}
 
-                                <li role="separator" class="divider"></li>
+                                {{--<li role="separator" class="divider"></li>--}}
 
-                                <li><a href="#">One more separated link</a></li>
+                                {{--<li><a href="#">One more separated link</a></li>--}}
 
                             </ul>
 
@@ -100,21 +100,21 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
 
-                               aria-expanded="false">New... <span class="caret"></span></a>
+                               aria-expanded="false">جديد <span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
 
-                                <li><a href="{{route('order.create')}}">Order</a></li>
+                                <li><a href="{{route('order.create')}}">أمر</a></li>
 
-                                <li><a href="{{route('shoes.create')}}">Shoes</a></li>
+                                <li><a href="{{route('shoes.create')}}">نوع حذاء</a></li>
 
-                                <li><a href="{{route('supplier.create')}}">Supplier</a></li>
+                                {{--<li><a href="{{route('supplier.create')}}">Supplier</a></li>--}}
 
-                                <li><a href="{{route('product.create')}}">Product</a></li>
+                                {{--<li><a href="{{route('product.create')}}">Product</a></li>--}}
 
-                                <li><a href="{{route('locker.create')}}">Locker</a></li>
+                                {{--<li><a href="{{route('locker.create')}}">Locker</a></li>--}}
 
-                                <li><a href="{{route('expenses.create')}}">Expense</a></li>
+                                <li><a href="{{route('expenses.create')}}">مصروفات</a></li>
 
                             </ul>
 
@@ -125,7 +125,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true"
 
-                               aria-expanded="false">Export... <span class="caret"></span></a>
+                               aria-expanded="false">استخراج<span class="caret"></span></a>
 
                             <ul class="dropdown-menu">
 
@@ -159,7 +159,7 @@
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                        Logout
+                                        تسجيل الخروج
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -176,9 +176,9 @@
 
                     @elseif (auth()->guest())
 
-                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('login') }}">تسجيل الدخول </a></li>
 
-                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{ route('register') }}">انشاء حساب</a></li>
 
                     @endif
 

@@ -25,7 +25,7 @@
                                 {{$order->customer->name}}
                             </a>
 
-                            <span class="pull-right">
+                            <span class="pull-left">
 
                                     {{$order->created_at->diffForHumans()}}
 
@@ -56,26 +56,26 @@
 
                         <div class="panel-footer">
 
-                            <a href="{{route('order.show',$order)}}" class="btn btn-default btn-xs">Show more</a>
+                            <a href="{{route('order.show',$order)}}" class="btn btn-default btn-xs">عرض المزيد</a>
 
-                            <a href="{{route('order.export.pdf',$order)}}" class="btn btn-default btn-xs">Export PDF</a>
+                            <a href="{{route('order.export.pdf',$order)}}" class="btn btn-default btn-xs">استخراج PDF</a>
 
                             @if($order->status != config('order.status.delivered'))
 
-                                <a href="{{route('order.edit',$order)}}" class="btn btn-primary btn-xs">Edit Order</a>
+                                <a href="{{route('order.edit',$order)}}" class="btn btn-primary btn-xs">تعديل الامر</a>
 
                             @endif
 
                             @if($order->status == config('order.status.progress'))
 
-                                <a href="{{route('order.complete',$order)}}" class="btn btn-success btn-xs pull-right"
-                                   onclick="{{$isThereFreeCompletedLocker ? "" : "return confirm('there is no free lockers to move to , are you want to complete the operation?')"}}">Complete</a>
+                                <a href="{{route('order.complete',$order)}}" class="btn btn-success btn-xs pull-left"
+                                   onclick="{{$isThereFreeCompletedLocker ? "" : "return confirm('there is no free lockers to move to , are you want to complete the operation?')"}}">اكتمال</a>
 
                             @endif
 
                             @if($order->status == config('order.status.completed'))
 
-                                <a href="{{route('order.deliver',$order)}}" class="btn btn-primary btn-xs pull-right">Deliver</a>
+                                <a href="{{route('order.deliver',$order)}}" class="btn btn-primary btn-xs pull-left">تسليم</a>
 
                             @endif
 

@@ -20,15 +20,15 @@
 
                     <div class="form-group">
 
-                        <label for="shoes_type">Shoes type</label>
+                        <label for="shoes_type">نوع الحذاء</label>
 
                         <input name="shoes_type" type="text" class="form-control" id="shoes_type"
-                               placeholder="shoes type..."
+                               placeholder="نوع الحذاء"
                                value="{{old('shoes_type')}}" required>
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary">save</button>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
 
                 </form>
 

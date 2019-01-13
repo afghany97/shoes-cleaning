@@ -53,7 +53,7 @@ class Order extends Model
 
             'priority' => request('priority')
 
-        ],request('delivery_date') ? ['delivery_date' => request('delivery_date')] : []));
+        ],request('delivery_date') ? ['delivery_date' => request('delivery_date')] : ['delivery_date' => Carbon::now()->addDays(2)]));
     }
 
     public function scopeFilter($query, $filters)

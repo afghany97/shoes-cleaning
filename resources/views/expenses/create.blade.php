@@ -20,25 +20,25 @@
 
                     <div class="form-group">
 
-                        <label for="quantity">Quantity</label>
+                        <label for="quantity">المصروفات</label>
 
                         <input name="quantity" type="number" class="form-control" id="quantity"
-                               placeholder="quantity"
+                               placeholder="المصروفات"
                                value="{{old('quantity')}}" required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="description">Description</label>
+                        <label for="description">السبب</label>
 
                         <input name="description" type="text" class="form-control" id="description"
-                               placeholder="description"
+                               placeholder="السبب"
                                value="{{old('description')}}" required>
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary">save</button>
+                    <button type="submit" class="btn btn-primary">حفظ</button>
 
                 </form>
 

@@ -20,41 +20,41 @@
 
                     <div class="form-group">
 
-                        <label for="mobile">mobile</label>
+                        <label for="mobile">رقم الموبيل</label>
 
                         <input name="mobile" type="number" class="form-control" id="mobile"
-                               placeholder="your mobile number" value="{{old('mobile')}}" required>
+                               placeholder="رقم موبيل العميل" value="{{old('mobile')}}" required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="name">name</label>
+                        <label for="name">اسم العميل</label>
 
-                        <input name="name" type="text" class="form-control" id="name" placeholder="your name"
+                        <input name="name" type="text" class="form-control" id="name" placeholder="اسم العميل"
                                value="{{old('name')}}" required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="address">address</label>
+                        <label for="address">عنوان العميل</label>
 
-                        <input name="address" type="text" class="form-control" id="address" placeholder="your address"
+                        <input name="address" type="text" class="form-control" id="address" placeholder="عنوان العميل"
                                value="{{old('address')}}" required>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="price">price</label>
+                        <label for="price">السعر</label>
 
-                        <input name="price" type="number" class="form-control" id="price" placeholder="price"
+                        <input name="price" type="number" class="form-control" id="price" placeholder="السعر"
                                value="{{old('price')}}" required>
 
                     </div>
 
-                    <div class="checkbox">
+                    <div class="checkbox hidden">
 
                         <label>
 
@@ -64,11 +64,11 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group hidden">
 
                         <label for="priority">Priority</label>
 
-                        <select name="priority" id="priority" class="form-control">
+                        <select name="priority" id="priority" class="form-control ">
 
                             @foreach(config('order.priority') as $key => $value)
 
@@ -82,13 +82,13 @@
 
                     <div class="form-group">
 
-                        <label for="image">Image</label>
+                        <label for="image">الصور</label>
 
                         <input name="images[]" type="file" class="form-control" id="image" accept="image/*" multiple>
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group hidden">
 
                         <label for="video">Video</label>
 
@@ -99,11 +99,11 @@
 
                     <div class="form-group">
 
-                        <label for="shoes">Shoe Type</label>
+                        <label for="shoes">نوع الحذاء</label>
 
                         <select name="shoes_id" id="shoes" class="form-control" required>
 
-                            <option selected disabled>Select shoes type</option>
+                            <option selected disabled>اختار نوع الحذاء</option>
 
                             @foreach($shoes as $shoe)
 
@@ -117,7 +117,7 @@
 
                     <div class="form-group">
 
-                        <label for="delivery_date">delivery date</label>
+                        <label for="delivery_date">تريخ التسليم</label>
 
                         <input name="delivery_date" type="text" class="form-control" id="delivery_date"
                                placeholder="pick delivery date by default after 2 days"
@@ -127,15 +127,15 @@
 
                     <div class="form-group">
 
-                        <label for="note">Note</label>
+                        <label for="note">ملاحظات</label>
 
-                        <textarea name="note" type="text" class="form-control" id="note" placeholder="note...">{{old('note') ? old('note') : ""}}</textarea>
+                        <textarea name="note" type="text" class="form-control" id="note" placeholder="ملاحظات">{{old('note') ? old('note') : ""}}</textarea>
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary" onclick="{{$isThereFreeLocker ? "" : " return confirm('there is no free lockers , are you want to complete the operation?')"}}">Save</button>
+                    <button type="submit" class="btn btn-primary" onclick="{{$isThereFreeLocker ? "" : " return confirm('there is no free lockers , are you want to complete the operation?')"}}">حفظ</button>
 
-                    <button class="btn btn-default" onclick="cancel()">cancel</button>
+                    <button class="btn btn-default" onclick="cancel()">الغاء</button>
 
                 </form>
 
